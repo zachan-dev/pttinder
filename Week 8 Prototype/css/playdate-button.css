@@ -1,0 +1,341 @@
+@charset "UTF-8";
+.outter-swiper *, .outter-swiper *:before, .outter-swiper *:after {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.playdate-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px 30px 0px;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+}
+
+:root {
+  --color-bg: #FDF1F2;
+  --color-rewind: #e9c121;
+  --color-nope: #EC5A69;
+  --color-star: #51A0FA;
+  --color-heart: #45CD8F;
+  --color-pet: brown;
+  --color-person: #F9A5C5;
+  --easing: cubic-bezier(.7,0,.3,1);
+  --duration: .5s;
+}
+
+.playdate-button {
+  font-size: 35vmin;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  width: .5em;
+  height: .5em;
+  padding: 0;
+  margin: 0 4px;
+  outline: none;
+  z-index: 2;
+  -webkit-transition: -webkit-transform var(--duration) var(--easing);
+  transition: -webkit-transform var(--duration) var(--easing);
+  transition: transform var(--duration) var(--easing);
+  transition: transform var(--duration) var(--easing), -webkit-transform var(--duration) var(--easing);
+  cursor: pointer;
+}
+.playdate-button:before {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0.15em 0.3em rgba(0, 0, 0, 0.3);
+  border-radius: inherit;
+  -webkit-transition: inherit;
+  transition: inherit;
+}
+.playdate-button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: inherit;
+  z-index: -1;
+}
+.playdate-button:active:before {
+  -webkit-animation: depress-shadow var(--duration) var(--easing) both;
+          animation: depress-shadow var(--duration) var(--easing) both;
+}
+.playdate-button:focus:after {
+  -webkit-animation: depress var(--duration) var(--easing) both;
+          animation: depress var(--duration) var(--easing) both;
+}
+@-webkit-keyframes depress {
+  from, to {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: translateY(5%) scale(0.9);
+            transform: translateY(5%) scale(0.9);
+  }
+}
+@keyframes depress {
+  from, to {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: translateY(5%) scale(0.9);
+            transform: translateY(5%) scale(0.9);
+  }
+}
+@-webkit-keyframes depress-shadow {
+  from, to {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+}
+@keyframes depress-shadow {
+  from, to {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+}
+.playdate-wrapper {
+  display: grid;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  z-index: 1;
+}
+.playdate-wrapper > * {
+  margin: auto;
+  grid-area: 1 / 1;
+}
+
+.playdate-shape {
+  width: .25em;
+  height: .25em;
+  display: block;
+  -webkit-transform-origin: center 80%;
+          transform-origin: center 80%;
+}
+.playdate-shape > path {
+  stroke: var(--color-heart);
+  stroke-width: 2;
+  fill: transparent;
+  -webkit-transition: fill var(--duration) var(--easing);
+  transition: fill var(--duration) var(--easing);
+}
+.heart > path {
+    stroke: var(--color-heart);
+}
+.star > path {
+    stroke: var(--color-star);
+}
+.pet > path {
+    stroke: var(--color-pet);
+}
+.person > path {
+    stroke: var(--color-person);
+}
+.rewind > path {
+    stroke: var(--color-rewind);
+}
+.nope > path {
+    stroke: var(--color-nope);
+}
+
+.playdate-button:focus .playdate-shape > path {
+  fill: var(--color-heart);
+}
+.playdate-button:focus .heart > path {
+    fill: var(--color-heart);
+}
+.playdate-button:focus .star > path {
+    fill: var(--color-star);
+}
+.playdate-button:focus .pet > path {
+    fill: var(--color-pet);
+}
+.playdate-button:focus .person > path {
+    fill: var(--color-person);
+}
+.playdate-button:focus .rewind > path {
+    fill: var(--color-rewind);
+}
+.playdate-button:focus .nope > path {
+    fill: var(--color-nope);
+}
+
+.playdate-button:focus .playdate-shape {
+  -webkit-animation: playdate-shape-bounce var(--duration) var(--easing);
+          animation: playdate-shape-bounce var(--duration) var(--easing);
+}
+@-webkit-keyframes playdate-shape-bounce {
+  40% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+  0%, 80%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes playdate-shape-bounce {
+  40% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+  0%, 80%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+/* Added wrapper to prevent layout jank with resizing particles */
+.particles {
+  width: 1px;
+  height: 1px;
+}
+
+.particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: .05em;
+  width: .05em;
+  border-radius: .025em;
+  background-color: var(--color);
+  --percentage: calc( var(--i) / var(--total-particles) );
+  --Θ: calc( var(--percentage) * 1turn );
+  -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0) scaleY(0);
+          transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0) scaleY(0);
+  -webkit-transition: all var(--duration) var(--easing);
+  transition: all var(--duration) var(--easing);
+}
+.playdate-button:focus .particle {
+  -webkit-animation: particles-out calc(var(--duration) * 1.2) var(--easing) forwards;
+          animation: particles-out calc(var(--duration) * 1.2) var(--easing) forwards;
+}
+@-webkit-keyframes particles-out {
+  50% {
+    height: .15em;
+  }
+  50%, 60% {
+    height: .15em;
+    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+  }
+  60% {
+    height: .1em;
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+  }
+}
+@keyframes particles-out {
+  50% {
+    height: .15em;
+  }
+  50%, 60% {
+    height: .15em;
+    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+  }
+  60% {
+    height: .1em;
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+  }
+}
+.ripple {
+  height: 0.5em;
+  width: 0.5em;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+}
+.ripple:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0.2em solid var(--color-heart);
+  border-radius: inherit;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+.ripple.heart:before {
+    border-color: var(--color-heart);
+}
+.ripple.star:before {
+    border-color: var(--color-star);
+}
+.ripple.pet:before {
+    border-color: var(--color-pet);
+}
+.ripple.person:before {
+    border-color: var(--color-person);
+}
+.ripple.rewind:before {
+    border-color: var(--color-rewind);
+}
+.ripple.nope:before {
+    border-color: var(--color-nope);
+}
+
+.playdate-button:focus .ripple:before {
+  -webkit-animation: ripple-out var(--duration) var(--easing);
+          animation: ripple-out var(--duration) var(--easing);
+}
+@-webkit-keyframes ripple-out {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(5);
+            transform: scale(5);
+  }
+}
+@keyframes ripple-out {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(5);
+            transform: scale(5);
+  }
+}
+
+/* Reset the animation when clicking again! */
+.playdate-button:focus {
+  pointer-events: none;
+  cursor: normal;
+}
