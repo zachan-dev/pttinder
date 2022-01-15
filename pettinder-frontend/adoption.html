@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="application-name" content="Pet Harmony">
+        <meta name="author" content="Sen Lin">
+        <meta name="description" content="Prototype for Pet Harmony's 'Playdate' page ">
+        <meta name="keywords" content="pets, dogs, Shiba Inu, meet people, meet dogs">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/home-page-services.css">
+        <link rel="stylesheet" href="css/adoption-page-header.css">
+        <link rel="stylesheet" href="css/sideNav.css">
+        <link rel="stylesheet" href="css/adoption-page-pets.css">
+
+        <!-- Swiper -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap" rel="stylesheet">
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/7905e3a2f6.js" crossorigin="anonymous"></script>
+    </head>
+<body>
+    <!-- Navigation-->
+    <nav>
+    
+        <div class="img-wrapper">
+            <img src="media/petharmony-logo.png" alt="Pet Harmony Logo - Picture of" />
+        </div>
+        
+        <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
+
+            <a class="nav-link" href="index.html">
+                Home
+            </a>
+            
+            <a class="nav-link" href="">
+            Shiba Inu
+            </a>
+    
+            <a class="nav-link" href="">
+            Services
+            </a>
+    
+            <a class="nav-link" href="adoption.html">
+            Adoption
+            </a>
+            
+            <a class="nav-link mobile-only" href="">
+            Sign-In
+            </a>
+    
+        </div>
+    
+        <div class="nav-wrapper-right">
+            
+            <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
+            
+            <a class="nav-link desktop-only" href="">
+            Sign-In
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Image -->
+    <header>
+        <div class="hero-container">
+            <div class="search-container">
+                <div class="search-pets">
+                    <h1 class="title">Find your perfect pet</h1>
+                    <p>Search for a dog or cat that you want to meet up with</p>
+                    <form action="">
+
+                        <div class="category-list">
+                            <div class="category">
+                                <label for="">
+                                    <input class="category-radio" name = "category-radio" type="radio">
+                                    <span class="kind">Cat</span>
+                                </label>
+                            </div>
+
+                            <div class="category">
+                                <label for="">
+                                    <input class="category-radio" name = "category-radio" type="radio">
+                                    <span class="kind">Dog</span>
+                                </label>
+                            </div>
+
+                            <div class="category">
+                                <label for="">
+                                    <input class="category-radio" name = "category-radio" type="radio">
+                                    <span class="kind">Other Pets</span>
+                                </label>
+                            </div>
+
+                            <div class="category">
+                                <label for="">
+                                    <input class="category-radio" name = "category-radio" type="radio">
+                                    <span class="kind">Shelter</span>
+                                </label>
+                            </div>
+                            
+                        </div>
+
+
+                        <div class="search-options">
+                            <div class="input-box">
+                                <span class="search-label">Location</span>
+                                <input type="text" placeholder="Location of the pets">
+                            </div>
+                            <div class="input-box">
+                                <span class="search-label">Breed</span>
+                                <input type="text" placeholder="Pets Breed">
+                            </div>
+                            <div class="input-box">
+                                <span class="search-label">Age</span>
+                                <input type="text" placeholder="Age of pets">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="button">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Adoption Page Content -->
+    <section class="page-content">
+        
+        <!-- Side Navigation -->
+        <section class="sidNav">
+            <details>
+                <summary class="pet-category">Cat</summary>
+                <a href="#t">American Shorthair Cat</a>
+                <a href="#">Birman Cat Breed</a>
+                <a href="#">Chartreux Cat Breed</a>
+                <a href="#">Himalayan Cat Breed</a>
+                <a href="#">Other Breeds</a>
+              </details>
+              <details>
+                <summary class="pet-category">Dog</summary>
+                <a href="#">American Shorthair Cat</a>
+                <a href="#">Birman Cat Breed</a>
+                <a href="#">Chartreux Cat Breed</a>
+                <a href="#">Himalayan Cat Breed</a>
+                <a href="#">Other Breeds</a>
+              </details>
+              <details>
+                <summary class="pet-category">Other Pets</summary>
+                <a href="#t">American Shorthair Cat</a>
+                <a href="#">Birman Cat Breed</a>
+                <a href="#">Chartreux Cat Breed</a>
+                <a href="#">Himalayan Cat Breed</a>
+                <a href="#">Other Breeds</a>
+              </details>
+        </section>
+
+        <!-- Featured Pets -->
+        <section class="pets-information">
+      
+            <div class="pets-card">
+              <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
+              <h5>Shiba Inu</h5>
+              <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+              <a class="contact-button button" href="">Contact</a>
+            </div>
+      
+            <div class="pets-card">
+                <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                <h5>Shiba Inu</h5>
+                <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+               <a class="contact-button button" href="">Contact</a>
+              </div>
+      
+              <div class="pets-card">
+                <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                <h5>Shiba Inu</h5>
+                <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+               <a class="contact-button button" href="">Contact</a>
+              </div>
+
+              <div class="pets-card">
+                <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                <h5>Shiba Inu</h5>
+                <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+               <a class="contact-button button" href="">Contact</a>
+              </div>
+
+              <div class="pets-card">
+                <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                <h5>Shiba Inu</h5>
+                <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+               <a class="contact-button button" href="">Contact</a>
+              </div>
+
+              <div class="pets-card">
+                <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                <h5>Shiba Inu</h5>
+                <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+               <a class="contact-button button" href="">Contact</a>
+              </div>
+        
+              <div class="pets-card">
+                  <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                  <h5>Shiba Inu</h5>
+                  <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                 <a class="contact-button button" href="">Contact</a>
+                </div>
+        
+                <div class="pets-card">
+                  <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                  <h5>Shiba Inu</h5>
+                  <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                 <a class="contact-button button" href="">Contact</a>
+                </div>
+  
+                <div class="pets-card">
+                  <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                  <h5>Shiba Inu</h5>
+                  <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                 <a class="contact-button button" href="">Contact</a>
+                </div>
+  
+                <div class="pets-card">
+                  <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
+                  <h5>Shiba Inu</h5>
+                  <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                 <a class="contact-button button" href="">Contact</a>
+                </div>
+
+            
+        </section>
+    </section>
+    
+
+
+    
+    
+</body>
+</html>
