@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- Basic metadata -->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="application-name" content="<%= title %>">
+    <meta name="author" content="Graham Tonelli">
+    <meta name="description" content="Prototype for <%= title %>'s 'Playdate' page ">
+    <meta name="keywords" content="pets, dogs, playdates, meet people, meet dogs">
+    <title><%= page %> | <%= title %></title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/home-page-header.css">
+    <link rel="stylesheet" href="css/home-page-services.css">
+    <link rel="stylesheet" href="css/mission-vision.css">
+    <link rel="stylesheet" href="css/testimonials.css">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/7905e3a2f6.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    
+    <!-- Navigation-->
+
+    <nav>
+      
+      <div class="img-wrapper" onclick="window.open('/', '_self');">
+        <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
+      </div>
+      
+      <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
+        <a class="nav-link" href="/playdate">Playdates</a>
+				<a class="nav-link" href="/service">Services</a>
+				<a class="nav-link" href="/adoption">Adoption</a>
+				<a class="nav-link" href="/about">About Us</a>
+				<a class="nav-link mobile-only" href="/login">Sign-In</a>
+      </div>
+
+      <div class="nav-wrapper-right">
+        
+        <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
+        
+        <a class="nav-link desktop-only" href="">Sign-In</a>
+
+      </div>
+    </nav>
+
+    <!-- Main hero Image and video -->
+
+    <header class="home-hero-video">
+      <div class="text-wrapper">
+        <h1><%= title %></h1>
+        <h4>Live, Love, Bark</h4>
+      </div>
+      <video class="desktop-only" width="1920" height="1080" autoplay muted loop>
+        <source src="media/Petharmony-Hero.m4v" type="video/mp4">
+      </video>
+    </header>
+    
+    <!-- Products and Services -->
+    
+    <section class="products-services">
+      
+      <div class="product-card">
+        <img src="media/woman-walking-two-dogs.jpg" alt="A vector graphic of a woman walking two dogs" />
+        <h5>Playdates</h5>
+        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+        <a class="button button-primary" href="/playdate">Find My Playmate!</a>
+      </div>
+
+      <div class="product-card">
+        <img src="media/man-with-large-dog.jpg" alt="A vector graphic of a man hugging a large dog" />
+        <h5>Adoption</h5>
+        <p>Find your next best friend using our adoption services! When you use our adoption services we donate a portion of the revenue to help animals in need!</p>
+        <a class="button button-primary" href="/adoption">See Animals</a>
+      </div>
+
+      <div class="product-card">
+        <img src="media/man-with-two-dogs.jpg" alt="A vector graphic of a man holding and standing next to dogs" />
+        <h5>Other Services</h5>
+        <p>Everything from Veterinary services and grooming, to training and pet-sitting - we've got you covered!</p>
+        <a class="button button-primary" href="/service">See Services</a>
+      </div>
+
+      
+    </section>
+
+    <!-- Mission & Vision Statement -->
+
+    <section class="mission-vision">
+      <div class="mission-container">
+        <div class="mission-wrapper">
+          <img src="media/mission-one.png" alt="A small dog looking right" />
+          <div class="text-wrapper">
+            <h5>Our Mission</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+
+        <div class="mission-wrapper">
+          <img src="media/mission-two.png" alt="A small dog looking at a bowl of food" />
+          <div class="text-wrapper">
+            <h5>Our Vision</h5>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+              sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+        </div>
+
+        <div class="mission-wrapper">
+          <img src="media/mission-three.png" alt="A small dog looking at a bowl of food" />
+          <div class="text-wrapper">
+            <h5>Our Statement</h5>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
+              veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials-->
+
+    <section class="testimonials">
+      
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="testimonial swiper-slide">
+            <div class="author-wrapper">
+              <img src="media/testimonial-one.jpg" class="author" alt="Picture of author x" />
+              <p>- Connor J.</p>
+            </div>
+            <div class="testimonial-body">
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <p class="body">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account 
+                of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids 
+                pleasure itself, because it is pleasure, but because those who do not know how to pursue </p>
+            </div>
+          </div>
+
+          <div class="testimonial swiper-slide">
+            <div class="author-wrapper">
+              <img src="media/testimonial-two.jpg" class="author" alt="Picture of author x" />
+              <p>- Sarah F.</p>
+            </div>
+            <div class="testimonial-body">
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <p class="body">officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a 
+                sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+            </div>
+          </div>
+
+          <div class="testimonial swiper-slide">
+            <div class="author-wrapper">
+              <img src="media/testimonial-three.jpg" class="author" alt="Picture of author x" />
+              <p>- Meghan K.</p>
+            </div>
+            <div class="testimonial-body">
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <img src="media/yellow-star.png" tabindex="-1" />
+              <p class="body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+                excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum 
+                facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo min</p>
+            </div>
+          </div>
+
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </section>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- Swiper -->
+  <script src="js/swiper-bundle.js"></script>
+  <!-- Custom JS -->
+  <script src="js/mobile-menu.js" type="text/javascript"></script>
+  <script src="js/home-page-script.js" type="text/javascript"></script>
+  </body>
+</html>
