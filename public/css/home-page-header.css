@@ -1,0 +1,66 @@
+.home-hero-video{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  background: white url('../media/home-hero-placeholder.jpg') no-repeat center / cover;
+}
+
+.home-hero-video::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  background: rgba(0,0,0,0.55);
+}
+
+.home-hero-video .text-wrapper{
+  color: white;
+  text-align: center;
+  position: relative;
+  z-index: 15;
+}
+
+@media screen and (min-width: 1024px){
+  .home-hero-video{
+    width: calc(100% - 8rem);
+    height: 43vw;
+    overflow: hidden;
+    padding: 4rem;
+    overflow: hidden;
+    justify-content: flex-start;
+    background: transparent;
+  }
+
+  .home-hero-video .text-wrapper{
+    padding: 1rem 2rem 0;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 3px 3px 24px 12px rgba(0,0,0,0.45);
+  }
+
+  .home-hero-video video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 56.25vw;
+    z-index: 10;
+  }
+
+  .home-hero-video::after{
+    background: rgba(0,0,0,0.15);
+  }
+}
+
+@media screen and (min-width: 1600px){
+  .home-hero-video{
+    box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.35);
+  }
+}

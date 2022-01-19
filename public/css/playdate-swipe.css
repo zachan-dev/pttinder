@@ -1,0 +1,55 @@
+.playdate-swipe{
+    margin: 1rem 0;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.author-wrapper{
+    padding: 0 2rem;
+    display: flex;
+    align-items: flex-end;
+    width: calc(100% - 8rem);
+    position: relative;
+    bottom: -2rem;
+}
+
+.author-wrapper p {
+    margin: 0;
+}
+
+
+.playdate-swipe-body{
+    width: calc(100% - 8rem);
+    margin: 0 auto 2rem;
+    box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+    padding: 3rem 2rem 2rem;
+    border-radius: 12px;
+}
+
+.playdate-swipe-body p {
+    margin-top: 1rem;
+}
+
+.playdate-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    height:100%;
+    width: 100%
+}
+
+.inner-swiper {
+    border-radius: 12px;
+    border: 2px solid black;
+    box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+}
+
+.playdate-info {
+    position: absolute !important;
+    bottom: 30px; 
+    left: 20px; 
+    z-index:10; 
+    color: white; 
+    background-color: rgba(0,0,0,.5);
+}
