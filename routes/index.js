@@ -51,5 +51,12 @@ router.get('/adoption', function(req, res, next) {
   });
 });
 
+/* GET signin page. */
+router.get('/signin', function(req, res, next) {
+  res.render('signin', { 
+    title: r.APP_NAME, 
+    page: 'Signin',
+  });
+});
 
 module.exports = router;
