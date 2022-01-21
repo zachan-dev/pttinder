@@ -5,7 +5,7 @@ A University project done by my peers and I.
 
 1. Clone the repository
     ```powershell
-    git clone https://github.com/gTonelli/pttinder,git
+    git clone https://github.com/gTonelli/pttinder.git
     ```
 2. Install dependencies
     ```powershell
