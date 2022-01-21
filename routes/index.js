@@ -59,4 +59,12 @@ router.get('/signin', function(req, res, next) {
   });
 });
 
+/* GET signin page. */
+router.get('/services', function(req, res, next) {
+  res.render('services', { 
+    title: r.APP_NAME, 
+    page: 'Services',
+  });
+});
+
 module.exports = router;

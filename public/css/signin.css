@@ -1,2 +1,109 @@
-.signing-form {
+.section-wrapper {
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 2px solid #404040;
+  box-shadow: 0px 3px 12px 4px rgba(0, 0, 0, 0.2);
+  max-width: 1024px;
+  margin: 1rem auto;
+  background: white;
+}
+
+body {
+  background: var(--primary-grey);
+}
+
+.form-wrapper {
+  padding: 1rem;
+  text-align: center;
+  width: calc(100% - 2rem);
+  max-width: 512px;
+  margin: 1rem auto;
+}
+
+.form-wrapper form {
+  text-align: left;
+}
+
+.left-col {
+  display: none;
+}
+
+form fieldset {
+  border: none;
+  padding: 0;
+}
+
+form input {
+  padding: 0.5rem 1rem;
+  font-size: 1.1em;
+  margin-bottom: 0.75rem;
+  display: block;
+  width: calc(100% - 2rem);
+  border-radius: 8px;
+  border: 2px solid var(--primary-blue);
+  box-shadow: 0 3px 8px 3px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  padding: 0.5rem 1rem 0.5rem 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.1em;
+}
+
+#submit_form {
+  width: 100%;
+  max-width: 200px;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+/* Social icons */
+
+.social-label {
+  text-align: center;
+}
+
+.icon-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  margin: 2rem auto 1rem;
+}
+
+.social-icon {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.social-icon img {
+  width: 100%;
+  max-width: 50px;
+}
+
+.signin-register {
+  margin-bottom: 0;
+  margin-top: 2rem;
+  color: var(--secondary-blue);
+}
+
+@media screen and (min-width: 1024px) {
+  .section-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    margin: 5rem auto;
+  }
+
+  .left-col {
+    display: block;
+  }
+
+  .left-col img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--primary-grey);
+  }
 }

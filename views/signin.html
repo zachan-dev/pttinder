@@ -11,7 +11,7 @@
 		<title><%= page %> | <%= title %></title>
 		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/nav.css">
-		<link rel="stylesheet" href="css/form.css">
+		<link rel="stylesheet" href="css/signin.css">
 		<!-- Swiper -->
 		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 		<!-- Google Fonts -->
@@ -34,7 +34,7 @@
         <a class="nav-link" href="/playdate">Playdates</a>
         <a class="nav-link" href="/service">Services</a>
         <a class="nav-link" href="/adoption">Adoption</a>
-        <a class="nav-link" href="/about">About Nobody</a>
+        <a class="nav-link" href="/about">About</a>
         <a class="nav-link mobile-only" href="/signin">Sign-In</a>
       </div>
 
@@ -47,29 +47,50 @@
       </div>
     </nav>
 
-		<!-- Registration Form -->
-		<form method="POST" id="registration-form" onsubmit="return validate()">
-			<fieldset id="identifying-information">
-				<legend>Identifying Information</legend>
+    <section class="section-wrapper">
+      <!-- Left Col -->
+      <div class="left-col">
+        <img src="media/signin_pets.png" alt="Graphic of a Cat, dog, bird, lizard and rabbit." />
+      </div>
+      
+      <!-- Right Col-->
+      <div class="form-wrapper">
+        <h4 class="mobile-only">WELCOME BACK!</h4>
+        <h3 class="desktop-only">WELCOME BACK!</h3>
+        <form method="POST">
+          <fieldset id="signin-information">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" name="email" id="email" required>
+            </div>
 
-				<div>
-					<label for="email">Email</label>
-					<input type="email" name="email" id="email" required>
-				</div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" name="password" id="password" required>
+            </div>
+  
+          </fieldset>
+          <input class="button button-primary" type="submit" id="submit_form" value="Sign In">
+        </form>
+        <!-- Alternative options for signing in -->
+        <h5 class="social-label">Or sign in with...</h5>
+        <div class="icon-group">
+          <a class="social-icon" href="">
+            <img src="media/google_icon.svg" alt="Sign in using google" />
+          </a>
 
-				<div>
-					<label for="password">Password</label>
-					<input type="password" name="password" id="password" required>
-				</div>
+          <a class="social-icon" href="">
+            <img src="media/facebook_icon.svg" alt="Sign in using facebook" />
+          </a>
 
-			</fieldset>
-			<input type="submit" id="submit_form" value="Register">
-		</form>
+          <a class="social-icon" href="">
+            <img src="media/linkedin_icon.svg" alt="Sign in using linkedin" />
+          </a>
+        </div>
+        <a href="/register" class="signin-register">Don't have an account? Sign up here!</a>
+      </div>
+    </section>
 
-		<!--Form Logic-->
-		<script src="js/validate-form.js" type="text/javascript"></script>
-		<script src="js/enable-pet-options.js" type="text/javascript"></script>
-		<script src="js/enable-service-options.js" type="text/javascript"></script>
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 		<!-- Swiper -->
