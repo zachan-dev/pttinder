@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="application-name" content="Pet Harmony">
-    <meta name="author" content="Ahmed Hassan">
+    <meta name="author" content="Graham Tonelli">
     <meta name="description" content="Prototype for Pet Harmony's 'Playdate' page ">
     <meta name="keywords" content="pets, dogs, playdates, meet people, meet dogs">
     <link rel="stylesheet" href="css/base.css">
@@ -28,52 +28,75 @@
     <!-- Navigation-->
     <nav>
       
-      <div class="img-wrapper" onclick="window.open('/', '_self');">
-        <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
-      </div>
-      
-      <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
-        <a class="nav-link" href="/playdate">Playdates</a>
-        <a class="nav-link" href="/service">Services</a>
-        <a class="nav-link" href="/adoption">Adoption</a>
-        <a class="nav-link" href="/about">About Nobody</a>
-        <a class="nav-link mobile-only" href="/signin">Sign-In</a>
-      </div>
-
-      <div class="nav-wrapper-right">
+        <div class="img-wrapper" onclick="window.open('./index.html', '_self');">
+          <img src="media/petharmony-logo.png" alt="Pet Harmony Logo - Picture of"/>
+        </div>
         
-        <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
-        
-        <a class="nav-link desktop-only" href="/signin">Sign-In</a>
-
-      </div>
-    </nav>
+        <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
+          
+          <a class="nav-link" href="./playdate.html">
+            Playdates
+          </a>
+  
+          <a class="nav-link" href="">
+            Services
+          </a>
+  
+          <a class="nav-link" href="">
+            Adoption
+          </a>
+  
+          <a class="nav-link" href="./about_us.html">
+            About Us
+          </a>
+          
+          <a class="nav-link mobile-only" href="">
+            Sign-In
+          </a>
+  
+        </div>
+  
+        <div class="nav-wrapper-right">
+          
+          <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
+          
+          <a class="nav-link desktop-only" href="">
+            Sign-In
+          </a>
+  
+        </div>
+      </nav>
 
     
-      <a href="https://placeholder.com">
+      <!--<a href="https://placeholder.com">
           <img src="https://via.placeholder.com/1000x100?text=Hero+Image+PlaceHolder" alt="">
-      </a>
+      </a>-->
     <!-- About us Vision statement-->
-    <section class="">
-    <div class="">
-        <div>
-            <h3>
-                About Us
-            </h3>
-            <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-              sunt in culpa qui officia deserunt mollit anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <img src="media/man-with-two-dogs.jpg" alt="">
-            </p>
-        </div>
-    </div>
+    <section class="about-us-section">   
+
+      <div class="about-us">
+        <h3>
+          About Us
+        </h3>
+        <p>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+
+      <div>
+        <img src="media/man-with-two-dogs.jpg" alt="">
+      </div>
+
     </section>
 
-    <section class="">
+
+    <h3 class="title">The Team</h3>
+    <section class="team">
+      
       <div class="testimonial swiper-slide">
         <div class="author-wrapper">
           <img src="media/testimonial-one.jpg" class="author" alt="Picture of author x" />
