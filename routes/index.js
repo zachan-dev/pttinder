@@ -51,5 +51,12 @@ router.get('/adoption', function(req, res, next) {
   });
 });
 
+/* GET services page. */
+router.get('/services', function(req, res, next) {
+  res.render('services', { 
+    title: r.APP_NAME, 
+    page: 'Services',
+  });
+});
 
 module.exports = router;
