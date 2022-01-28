@@ -3,8 +3,8 @@
     height: 75vh;
     background: 
     linear-gradient(rgba(183, 84, 163, 0.305), rgba(200, 181, 36, 0.216)),
-    /* Image address: https://vetsource.com/wp-content/uploads/2018/11/img-pet-adoption-101.jpg */
-    url("../media/adoption-hero.jpeg") no-repeat center/cover;
+    /* Image address: https://vetsource.com/wp-content/uploads/2017/11/banner-compounding.jpg */
+    url("../media/pet-services.jpg") no-repeat center/cover;
 }
 
 .search-container{
