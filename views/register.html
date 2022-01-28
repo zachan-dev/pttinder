@@ -22,30 +22,29 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://kit.fontawesome.com/7905e3a2f6.js" crossorigin="anonymous"></script>
 	</head>
+	
 	<body>
 		<!-- Navigation-->
 		<nav>
-      
-      <div class="img-wrapper" onclick="window.open('/', '_self');">
-        <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
-      </div>
-      
-      <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
-        <a class="nav-link" href="/playdate">Playdates</a>
-        <a class="nav-link" href="/service">Services</a>
-        <a class="nav-link" href="/adoption">Adoption</a>
-        <a class="nav-link" href="/about">About Nobody</a>
-        <a class="nav-link mobile-only" href="/signin">Sign-In</a>
-      </div>
-
-      <div class="nav-wrapper-right">
-        
-        <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
-        
-        <a class="nav-link desktop-only" href="/signin">Sign-In</a>
-
-      </div>
-    </nav>
+			<div class="img-wrapper" onclick="window.open('/', '_self');">
+			  <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
+			</div>
+			
+			<div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
+			  <a class="nav-link" href="/playdate">Playdates</a>
+			  <a class="nav-link" href="/services">Services</a>
+			  <a class="nav-link" href="/adoption">Adoption</a>
+			  <a class="nav-link" href="/about">About Us</a>
+			  <a class="nav-link mobile-only" href="/signin">Sign-In</a>
+			  <a class="nav-link mobile-only" href="/register">Register</a>
+			</div>
+	  
+			<div class="nav-wrapper-right">
+			  <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
+			  <a class="nav-link desktop-only" href="/signin">Sign-In</a>
+			  <a class="nav-link desktop-only" href="/register">Register</a>
+			</div>
+		</nav>
 
 		<!-- Registration Form -->
 		<form method="POST" id="registration-form" onsubmit="return validate()">
