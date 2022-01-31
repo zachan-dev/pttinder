@@ -5,7 +5,7 @@ petOwnership.addEventListener('click', enableOptions);
 
 function enableOptions()
 {
-	const petOptions = document.getElementsByName("pet-options");
+	const petOptions = document.getElementsByClassName("pet-options");
 	const uncheck = document.getElementsByClassName("checkable-pet-options");
 	
 	if(petOwnership.checked)
@@ -14,13 +14,15 @@ function enableOptions()
 
 		document.getElementById("pet-type").required = this.checked;
 		document.getElementById("pet-name").required = this.checked;
+		document.getElementById("pet-image").required = this.checked;
 	}
 	else
 	{		
 		for(var i = 0; i < petOptions.length; i++) petOptions[i].setAttribute('disabled', true);
-		
 		for(var i = 0; i < uncheck.length; i++) uncheck[i].checked = false;
 
 		document.getElementById("pet-name").value = '';
+		document.getElementById("pet-type").value = '';
+		document.getElementById("pet-image").value = '';
 	}
 }
