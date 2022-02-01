@@ -45,13 +45,13 @@ router.post('/register', function(req, res, next) {
   let phone = req.body.phone;
   
   // Table: Ownership 
-  // if pet_owner == true
+  // if pet_owner != ''
   let pet_type = req.body.pet_type;
   let seek_date = req.body.seek_date != '' ? 1 : 0;
   let seek_parent = req.body.seek_parent != '' ? 1 : 0;
   
   // Table: Services
-  // if services == true
+  // if services == != ''
   let service_collection = req.body.service_options;
   
   // Insert into Users table
@@ -67,7 +67,7 @@ router.post('/register', function(req, res, next) {
 
   // Insert into Location table
   let location_sql;
-  if (phone != ''){
+  if (typeof phone !== 'undefined') {
     location_sql = `INSERT INTO Location (user_id, postal_code, phone) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${postal_code}', '${phone}')`;
   }else{
     location_sql = `INSERT INTO Location (user_id, postal_code) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${postal_code}')`;
@@ -83,7 +83,8 @@ router.post('/register', function(req, res, next) {
 
   // Insert into Ownership table
   let ownership_sql;
-  if (req.body.pet_owner != '') {
+  console.log("Debug: ownership: %j", req.body.pet_owner);
+  if (typeof req.body.pet_owner !== 'undefined') {
     ownership_sql = `INSERT INTO Ownership (user_id, pet_type, seek_date, seek_parent) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${pet_type}', '${seek_date}', '${seek_parent}')`;
     db.query(ownership_sql, (err, result) => {
       if (err) {
@@ -92,6 +93,21 @@ router.post('/register', function(req, res, next) {
         console.log("Ownership Debug: %j", result);
       }
     });
+  };
+
+  // Insert into Services table
+  let services_sql;
+  if (typeof req.body.services !== 'undefined' && service_collection.length > 0) {
+    for (let i = 0; i < service_collection.length; i++) {
+      services_sql = `INSERT INTO Services (user_id, service) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${service_collection[i]}')`;
+      db.query(services_sql, (err, result) => {
+        if (err) {
+          console.log("Services Error: %j", err);
+        } else {
+          console.log("Services Debug: %j", result);
+        }
+      });
+    }
   };
   
   
