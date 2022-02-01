@@ -21,9 +21,83 @@ router.get('/about', function(req, res, next) {
 
 /* GET register page. */
 router.get('/register', function(req, res, next) {
+  console.log(req.body);
   res.render('register', { 
     title: r.APP_NAME, 
     page: 'Register',
+  });
+});
+
+/* POST register page. */
+router.post('/register', function(req, res, next) {
+  console.log("Debug: body: %j", req.body);
+  
+  // Table: Users
+  let email = req.body.email;
+  let password = req.body.password;
+  let description = req.body.description;
+  let user_name = req.body.user_name;
+  let user_image_url = req.body.user_image;
+  let looking_for_date = req.body.looking_for_date ? 1 : 0;
+  
+  // Table: Location
+  let postal_code = req.body.postal_code;
+  let phone = req.body.phone;
+  
+  // Table: Ownership 
+  // if pet_owner == true
+  let pet_type = req.body.pet_type;
+  let seek_date = req.body.seek_date != '' ? 1 : 0;
+  let seek_parent = req.body.seek_parent != '' ? 1 : 0;
+  
+  // Table: Services
+  // if services == true
+  let service_collection = req.body.service_options;
+  
+  // Insert into Users table
+  let users_sql = `INSERT INTO Users (email, password, description, user_name, user_image_url, looking_for_date) VALUES ('${email}', '${password}', '${description}', '${user_name}', '${user_image_url}', '${looking_for_date}')`;
+  db.query(users_sql, (err, result) => {
+    if (err) {
+      console.log("Users Error: %j", err);
+    } else {
+      console.log("Users Debug: %j", result);
+    }
+  });
+
+
+  // Insert into Location table
+  let location_sql;
+  if (phone != ''){
+    location_sql = `INSERT INTO Location (user_id, postal_code, phone) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${postal_code}', '${phone}')`;
+  }else{
+    location_sql = `INSERT INTO Location (user_id, postal_code) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${postal_code}')`;
+  }
+
+  db.query(location_sql, (err, result) => {
+    if (err) {
+      console.log("Location Error: %j", err);
+    } else {
+      console.log("Location Debug: %j", result);
+    }
+  });
+
+  // Insert into Ownership table
+  let ownership_sql;
+  if (req.body.pet_owner != '') {
+    ownership_sql = `INSERT INTO Ownership (user_id, pet_type, seek_date, seek_parent) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${pet_type}', '${seek_date}', '${seek_parent}')`;
+    db.query(ownership_sql, (err, result) => {
+      if (err) {
+        console.log("Ownership Error: %j", err);
+      } else {
+        console.log("Ownership Debug: %j", result);
+      }
+    });
+  };
+  
+  
+  res.render('index', { 
+    title: r.APP_NAME, 
+    page: 'Home',
   });
 });
 
