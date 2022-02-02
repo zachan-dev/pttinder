@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   `city` varchar(25) NOT NULL,
   `state` varchar(25) DEFAULT NULL,
   `country` varchar(25) NOT NULL,
-  `zip` varchar(10) DEFAULT NULL,
+  `code` varchar(10) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `owner` tinyint(1) DEFAULT NULL,
   `type` varchar(20) DEFAULT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `users` (
   `veterinarian` tinyint(1) DEFAULT NULL,
   `radioShow` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +63,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'user1@gmail.com','pass1','user1','hi, i\'m user1','man-with-large-dog.jpg','barrington street','halifax','nova scotia','canada','b3h4r4','9021234567',1,'dog','dogone','pet-1.jpg',1,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'user2@gmail.com','pass2','user2','Hi, I\'m user2','man-with-two-dogs.jpg','spring garden road','halifax','nova scotia','canada','b3h1y3','9022345678',1,'dog','dogtwo','pet-2.jpg',1,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'user3@gmail.com','pass3','user3','Hi, I\'m user3','woman-walking-two-dogs.jpg','quinpool road','halifax','nova scotia','canada','','9023456789',1,'cat','catone','pet-3.jpg',1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'user4@gmail.com','pass4','user4','Hi, I\'m user4','testimonial-one.jpg','rue pierre corneille','laval','quebec','canada','','5141234567',NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,1,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(5,'user5@gmail.com','pass5','user5','Hi, I\'m user5','testimonial-two.jpg','rue st-catherine','montreal','quebec','canada','','5142345678',1,'cat','cattwo','shiba-inu-1.jpg',1,NULL,1,1,1,NULL,1,NULL,1,NULL,NULL,NULL,NULL,NULL),(6,'user6@gmail.com','pass6','user6','Hi, I\'m user6','testimonial-three.jpg','avenue de vimy','outremont','quebec','canada','','5144567890',NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,1,1,1,1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -75,4 +76,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-01 23:19:07
+-- Dump completed on 2022-02-02 23:00:30

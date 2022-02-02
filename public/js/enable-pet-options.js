@@ -1,6 +1,6 @@
 // Logic for form validation / pet services
 
-const petOwnership = document.getElementById("pet-owner");
+const petOwnership = document.getElementById("owner");
 petOwnership.addEventListener('click', enableOptions);
 
 function enableOptions()
@@ -12,17 +12,17 @@ function enableOptions()
 	{
 		for(var i = 0; i < petOptions.length; i++) petOptions[i].removeAttribute("disabled");
 
-		document.getElementById("pet-type").required = this.checked;
-		document.getElementById("pet-name").required = this.checked;
-		document.getElementById("pet-image").required = this.checked;
+		document.getElementById("type").required = this.checked;
+		document.getElementById("petname").required = this.checked;
+		document.getElementById("petPic").required = this.checked;
 	}
 	else
 	{		
 		for(var i = 0; i < petOptions.length; i++) petOptions[i].setAttribute('disabled', true);
 		for(var i = 0; i < uncheck.length; i++) uncheck[i].checked = false;
 
-		document.getElementById("pet-name").value = '';
-		document.getElementById("pet-type").value = '';
-		document.getElementById("pet-image").value = '';
+		document.getElementById("petname").value = '';
+		document.getElementById("type").value = '';
+		document.getElementById("petPic").value = '';
 	}
 }
