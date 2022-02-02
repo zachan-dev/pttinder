@@ -3,6 +3,10 @@ const db = require('../database');
 const r = require('../resources');
 var router = express.Router();
 
+// For password encryption
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { 
@@ -53,17 +57,20 @@ router.post('/register', function(req, res, next) {
   // Table: Services
   // if services == != ''
   let service_collection = req.body.service_options;
-  
-  // Insert into Users table
-  let users_sql = `INSERT INTO Users (email, password, description, user_name, user_image_url, looking_for_date) VALUES ('${email}', '${password}', '${description}', '${user_name}', '${user_image_url}', '${looking_for_date}')`;
-  db.query(users_sql, (err, result) => {
-    if (err) {
-      console.log("Users Error: %j", err);
-    } else {
-      console.log("Users Debug: %j", result);
-    }
-  });
 
+  bcrypt.hash(password, saltRounds, function(err, hash) {
+    // Insert into Users table
+    let users_sql = `INSERT INTO Users (email, password, description, user_name, user_image_url, looking_for_date) VALUES ('${email}', '${hash}', '${description}', '${user_name}', '${user_image_url}', '${looking_for_date}')`;
+    db.query(users_sql, (err, result) => {
+      if (err) {
+        console.log("Users Error: %j", err);
+      } else {
+        console.log("Users Debug: %j", result);
+      }
+    });
+  });
+  
+  
 
   // Insert into Location table
   let location_sql;
