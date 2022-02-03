@@ -34,7 +34,7 @@ router.get('/register', function(req, res, next) {
 
 /* POST register page. */
 router.post('/register', function(req, res, next) {
-  console.log("Debug: body: %j", req.body);
+  // console.log("Debug: body: %j", req.body);
   
   // Table: Users
   let email = req.body.email;
@@ -70,8 +70,6 @@ router.post('/register', function(req, res, next) {
     });
   });
   
-  
-
   // Insert into Location table
   let location_sql;
   if (typeof phone !== 'undefined') {
@@ -154,6 +152,39 @@ router.get('/signin', function(req, res, next) {
     title: r.APP_NAME, 
     page: 'Signin',
   });
+});
+
+router.post('/signin', function(req, res, next) {
+
+  let email = req.body.email;
+  let password = req.body.password;
+
+  let sql = `SELECT * FROM Users WHERE email = '${email}'`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log("Error: %j", err);
+    } else {
+      //console.log("Debug: %j", result);
+      if (result.length > 0) {
+        bcrypt.compare(password, result[0].password, function(err, data) {
+          if (data) {
+            console.log("Debug: result %j", result[0]);
+            //req.session.user = result[0];
+            res.redirect('/profile');
+          } else {
+            res.redirect('/signin');
+          }
+        });
+      } else {
+        res.redirect('/signin');
+      }
+    }
+  });
+
+  // res.render('index', { 
+  //   title: r.APP_NAME, 
+  //   page: 'Signin',
+  // });
 });
 
 /* GET signin page. */
