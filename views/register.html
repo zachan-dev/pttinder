@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/nav.css">
 		<link rel="stylesheet" href="css/register.css">
+		<!-- Swiper -->
+		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +50,7 @@
 		<div class="marginContainer"></div>
 
 		<div class="registration-container">
-			<form action="/useradded" method="POST" id="registration-form" onsubmit="return validate()">
+			<form method="POST" id="registration-form" onsubmit="return validate()">
 				<div class="title">
 					<h1>Sign Up</h1>
 				</div>
@@ -67,8 +69,8 @@
 					</div>
 
 					<div>
-						<label class="required" for="username">Username</label><br>
-						<input class="input-box" type="text" name="username" id="username" maxlength="20" onkeyup="alphanumeric(this)" required>
+						<label class="required" for="user_name">User Name</label><br>
+						<input class="input-box" type="text" name="user_name" id="user_name" maxlength="20" onkeyup="alphanumeric(this)" required>
 					</div>
 
 					<div>
@@ -77,8 +79,8 @@
 					</div>
 
 					<div>
-						<label class="required" for="userPic">User Picture (png or jpeg)</label><br>
-						<input type="file" name="userPic" id="userPic" accept="image/png, image/jpeg" required>
+						<label class="required" for="user_image">User Image (png or jpeg)</label><br>
+						<input type="file" name="user_image" id="user_image" accept="image/png, image/jpeg" required>
 					</div>
 				</fieldset>
 
@@ -123,8 +125,8 @@
 						<legend>Pet ownership:</legend>
 
 						<div class="pet-ownership">
-							<input type="checkbox" name="owner" id="owner" value="1">
-							<label for="owner">Do you have a pet?</label><br>
+							<input type="checkbox" name="pet_owner" id="pet_owner" value="true">
+							<label for="pet_owner">Do you have a pet?</label><br>
 						</div>
 					</fieldset>
 
@@ -133,8 +135,8 @@
 						<legend>Select Pet Options:</legend>
 
 						<div>
-							<label class="required" for="type">What type of pet do you have?</label><br>
-							<select class="pet-options" name="type" id="type" disabled> <!-- Make required when enabled -->
+							<label class="required" for="pet_type">What type of pet do you have?</label><br>
+							<select class="pet-options" name="pet_type" id="pet_type" required disabled> <!-- Make required when enabled -->
 								<option value="">-- Select an option --</option>
 								<option value="dog">Dog</option>
 								<option value="cat">Cat</option>
@@ -147,23 +149,23 @@
 						</div>
 
 						<div>
-							<label class="required" for="petname">Pet Name</label><br>
-							<input class="pet-options input-box" type="text" name="petname" id="petname" maxlength="20" onkeyup="letters(this)" disabled>
+							<label class="required" for="pet_name">Pet Name</label><br>
+							<input class="pet-options input-box" type="text" name="pet_name" id="pet_name" maxlength="20" onkeyup="letters(this)" required disabled>
 						</div>
 
 						<div>
-							<label class="required" for="petPic">Pet Picture (png or jpeg)</label><br>
-							<input class="pet-options" type="file" name="petPic" id="petPic" accept="image/png, image/jpeg" disabled>
+							<label class="required" for="pet_image">Pet Picture (png or jpeg)</label><br>
+							<input class="pet-options" type="file" name="pet_image" id="pet_image" accept="image/png, image/jpeg" required disabled>
 						</div>
 
 						<div>
-							<input class="pet-options checkable-pet-options" type="checkbox" name="playdate" id="playdate" value="1" disabled>
-							<label for="playdate">Do you want to find a playdate for your pet?</label><br>
+							<input class="pet-options checkable-pet-options" type="checkbox" name="lf_playdate" id="lf_playdate" value="true" disabled>
+							<label for="lf_playdate">Do you want to find a playdate for your pet?</label><br>
 						</div>
 
 						<div>
-							<input class="pet-options checkable-pet-options" type="checkbox" name="adoption" id="adoption" value="1" disabled>
-							<label for="adoption">Do you want to find a new parent for your pet?</label><br>
+							<input class="pet-options checkable-pet-options" type="checkbox" name="lf_adoption" id="lf_adoption" value="true" disabled>
+							<label for="lf_adoption">Do you want to find a new parent for your pet?</label><br>
 						</div>
 					</fieldset>
 
@@ -171,8 +173,8 @@
 						<legend>Dating:</legend>
 
 						<div class="dating">
-							<input type="checkbox" name="date" id="date" value="1">
-							<label for="date">Are you looking for a human date?</label><br>
+							<input type="checkbox" name="lf_date" id="lf_date" value="true">
+							<label for="lf_date">Are you looking for a human date?</label><br>
 						</div>
 					</fieldset>
 					
@@ -180,7 +182,7 @@
 						<legend>Services:</legend>
 						
 						<div class="services">
-							<input type="checkbox" name="services" id="services" value="1">
+							<input type="checkbox" name="services" id="services" value="true">
 							<label for="services">Are you offering pet services?</label><br>
 						</div>
 					</fieldset>
@@ -189,43 +191,43 @@
 						<legend>Select at least one service option:</legend>
 
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="groomer" id="groomer" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="groomer" value="groomer" disabled>
 							<label for="groomer">Pet Grooming</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="walker" id="walker" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="walker" value="walker" disabled>
 							<label for="walker">Pet Walker</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="trainer" id="trainer" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="trainer" value="trainer" disabled>
 							<label for="trainer">Pet Trainer</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="sitter" id="sitter" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="sitter" value="sitter" disabled>
 							<label for="sitter">Pet Sitter</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="daycare" id="daycare" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="daycare" value="daycare" disabled>
 							<label for="daycare">Pet Daycare</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="foods" id="foods" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="foods" value="foods" disabled>
 							<label for="foods">Pet Foods</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="products" id="products" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="products" value="products" disabled>
 							<label for="products">Pet Products</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="mobileClinic" id="mobileClinic" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="mobileClinic" value="mobileClinic" disabled>
 							<label for="mobile-clinic">Pet Mobile Clinic</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="veterinarian" id="veterinarian" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="veterinarian" value="veterinarian" disabled>
 							<label for="veterinarian">Veterinarian</label><br>
 						</div>
 						<div>
-							<input class="checkable-service-options" type="checkbox" name="radioShow" id="radioShow" value="1" disabled>
+							<input class="checkable-service-options" type="checkbox" name="service_options" id="radioShow" value="radioShow" disabled>
 							<label for="radioShow">Pet Radio Show</label><br>
 						</div>
 					</fieldset>
