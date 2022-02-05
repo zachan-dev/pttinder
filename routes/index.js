@@ -37,11 +37,11 @@ router.post('/register', function (req, res, next) {
   // console.log("Debug: body: %j", req.body);
 
   // Table: Users
-  let email = req.body.email;
-  let password = req.body.password;
   let user_name = req.body.user_name;
-  let description = req.body.description;
+  let email = db.escape(req.body.email);
+  let password = req.body.password;
   let user_image_url = req.body.user_image;
+  let description = db.escape(req.body.description);
   let lf_date = req.body.lf_date ? 1 : 0;
 
   // Table: Location
@@ -61,12 +61,13 @@ router.post('/register', function (req, res, next) {
   let lf_adoption = req.body.lf_adoption ? 1 : 0;
 
   // Table: Services
-  // if services == != ''
+  // if services != ''
   let service_collection = req.body.service_options;
 
   bcrypt.hash(password, saltRounds, function (err, hash){
     // Insert into Users table
-    let users_sql = `INSERT INTO Users (email, password, user_name, description, user_image_url, lf_date) VALUES ('${email}', '${hash}', '${user_name}', '${description}', '${user_image_url}', '${lf_date}')`;
+    let users_sql = `INSERT INTO Users (email, password, user_name, description, user_image_url, lf_date)
+      VALUES (${email}, '${hash}', '${user_name}', ${description}, '${user_image_url}', '${lf_date}')`;
 
     db.query(users_sql, (err, result) => {
       if (err) 
@@ -75,14 +76,8 @@ router.post('/register', function (req, res, next) {
       } 
       else 
       {
-        // Insert into Location table
-        // let location_sql;
-        // if (typeof phone !== 'undefined') {
-        //   location_sql = `INSERT INTO Location (user_id, postal_code, phone) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${postal_code}', '${phone}')`;
-        // } else {
-        //   location_sql = `INSERT INTO Location (user_id, postal_code) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${postal_code}')`;
-        // }
-        let location_sql = `INSERT INTO Locations (user_id, street, city, state, country, code, phone) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${street}', '${city}', '${state}', '${country}', '${code}', '${phone}')`;
+        let location_sql = `INSERT INTO Locations (user_id, street, city, state, country, code, phone)
+          VALUES ((SELECT id FROM Users WHERE email = ${email}), '${street}', '${city}', '${state}', '${country}', '${code}', '${phone}')`;
 
         db.query(location_sql, (err, result) => {
           if (err)
@@ -102,7 +97,8 @@ router.post('/register', function (req, res, next) {
 
         if (typeof req.body.pet_owner !== 'undefined')
         {
-          ownership_sql = `INSERT INTO Ownerships (user_id, pet_type, pet_name, pet_image_url, lf_playdate, lf_adoption) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${pet_type}', '${pet_name}', '${pet_image_url}', '${lf_playdate}', '${lf_adoption}')`;
+          ownership_sql = `INSERT INTO Ownerships (user_id, pet_type, pet_name, pet_image_url, lf_playdate, lf_adoption)
+            VALUES ((SELECT id FROM Users WHERE email = ${email}), '${pet_type}', '${pet_name}', '${pet_image_url}', '${lf_playdate}', '${lf_adoption}')`;
 
           console.log("Debug: ownership sql: %j", ownership_sql);
           db.query(ownership_sql, (err, result) => {
@@ -123,7 +119,8 @@ router.post('/register', function (req, res, next) {
         {
           for (let i = 0; i < service_collection.length; i++)
           {
-            services_sql = `INSERT INTO Services (user_id, service) VALUES ((SELECT id FROM Users WHERE email = '${email}'), '${service_collection[i]}')`;
+            services_sql = `INSERT INTO Services (user_id, service)
+              VALUES ((SELECT id FROM Users WHERE email = ${email}), '${service_collection[i]}')`;
 
             db.query(services_sql, (err, result) => {
               if (err)
@@ -161,30 +158,34 @@ router.post('/signin', function (req, res, next) {
 
   let sql = `SELECT * FROM Users WHERE email = '${email}'`;
   db.query(sql, (err, result) => {
-    if (err) {
+    if (err)
+    {
       console.log("Error: %j", err);
-    } else {
+    }
+    else
+    {
       //console.log("Debug: %j", result);
-      if (result.length > 0) {
+      if (result.length > 0)
+      {
         bcrypt.compare(password, result[0].password, function (err, data) {
-          if (data) {
+          if (data)
+          {
             console.log("Debug: result %j", result[0]);
             //req.session.user = result[0];
             res.redirect('/profile');
-          } else {
+          }
+          else
+          {
             res.redirect('/signin');
           }
         });
-      } else {
+      }
+      else
+      {
         res.redirect('/signin');
       }
     }
   });
-
-  // res.render('index', { 
-  //   title: r.APP_NAME, 
-  //   page: 'Signin',
-  // });
 });
 
 /* GET profile page. */

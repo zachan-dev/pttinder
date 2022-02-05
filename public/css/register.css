@@ -1,12 +1,15 @@
-body{
-    background-image: linear-gradient(rgba(183, 84, 163, 0.44), rgba(200, 181, 36, 0.515));
+body {
+    background-image: linear-gradient(
+        rgba(183, 84, 163, 0.44),
+        rgba(200, 181, 36, 0.515)
+    );
 }
 
 h1{
     color: #344759;
 }
 
-fieldset{
+fieldset {
     border: 3px solid #9ca5aa28;
     margin: 5% 0;
     padding: 5% 5%;
@@ -14,14 +17,14 @@ fieldset{
     /* border-radius: 5%; */
 }
 
-legend{
+legend {
     font-size: 1.5rem;
     font-weight: bold;
     font-family: 'Questrial', sans-serif;
     color: #344759e5;
 }
 
-legend::after{
+legend::after {
     content: "";
     display: block;
     width: 75%;
@@ -30,21 +33,21 @@ legend::after{
     margin: 2px;
 }
 
-label{
+label {
     color: #344759c2;
 }
 
-.title{
+.title {
     justify-content: center;
     align-items: center;
     display: flex;
 }
 
-.marginContainer{
+.marginContainer {
     margin-top: 2%;
 }
 
-.registration-container{
+.registration-container {
     width: 70%;
     max-width: 900px;
     display: flex;
@@ -56,7 +59,7 @@ label{
     background: #f9fbfc3f;
 }
 
-#submit_form{
+#submit_form {
     width: 100%;
     height: 60px;
     border-radius: 10px;
@@ -68,22 +71,29 @@ label{
     cursor: pointer;
 }
 
-.input-box{
+.input-box {
     width: 100%;
     height: 25px;
     border-radius: 8px;
     border: 1.2px solid var(--primary-blue);
 }
 
-#description{
+#description {
     height: 100%;
-}
-
-#registration-form{
-    width: 80%;
 }
 
 .required:after {
     content:" *";
     color: red;
+}
+
+.preview img {
+	padding: 1rem;
+	border-radius: 14px;
+	box-shadow: 0 3px 14px 5px rgba(0, 0, 0, 0.2);
+	background: white;
+	display: none;
+	width: 100%;
+	max-width: 350px;
+	margin: 1rem auto 0 0;
   }

@@ -14,11 +14,15 @@ function enableOptions()
 	}
 	else
 	{		
+		let petImageThumbnail = document.getElementById('pet-image-thumbnail');
+
 		for(var i = 0; i < petOptions.length; i++) petOptions[i].setAttribute('disabled', true);
 		for(var i = 0; i < uncheck.length; i++) uncheck[i].checked = false;
 
 		document.getElementById("pet_type").value = '';
 		document.getElementById("pet_name").value = '';
 		document.getElementById("pet_image").value = '';
+		petImageThumbnail.removeAttribute('src');
+		petImageThumbnail.style.display = "none";
 	}
 }
