@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Ownerships`
+-- Table structure for table `ownerships`
 --
 
-DROP TABLE IF EXISTS `Ownerships`;
+DROP TABLE IF EXISTS `ownerships`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Ownerships` (
+CREATE TABLE `ownerships` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
   `pet_type` varchar(50) DEFAULT NULL,
@@ -32,17 +32,18 @@ CREATE TABLE `Ownerships` (
   `lf_adoption` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `Ownerships_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `Ownerships_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Ownerships`
+-- Dumping data for table `ownerships`
 --
 
-LOCK TABLES `Ownerships` WRITE;
-/*!40000 ALTER TABLE `Ownerships` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Ownerships` ENABLE KEYS */;
+LOCK TABLES `ownerships` WRITE;
+/*!40000 ALTER TABLE `ownerships` DISABLE KEYS */;
+INSERT INTO `ownerships` VALUES (1,1,'dog','dogone','pet-1.jpg',1,0),(2,2,'dog','dogone','pet-2.jpg',1,0),(3,3,'dog','dogthree','shiba-inu-1.jpg',1,0),(4,4,'cat','cat','pet-3.jpg',0,1),(5,5,'dog','dogfive','signin_pets.png',0,1);
+/*!40000 ALTER TABLE `ownerships` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-05  0:31:34
+-- Dump completed on 2022-02-05 15:56:16

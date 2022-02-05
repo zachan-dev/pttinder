@@ -1,8 +1,16 @@
-let imageThumbnail = document.getElementById('preview-thumbnail');
+let userImageThumbnail = document.getElementById('user-image-thumbnail');
+let petImageThumbnail = document.getElementById('pet-image-thumbnail');
 
-function previewImage(input)
+function previewUserImage(input)
 {
   const file = input.files[0];
-  imageThumbnail.setAttribute('src', URL.createObjectURL(file));
-  imageThumbnail.style.display = "block";
+  userImageThumbnail.setAttribute('src', URL.createObjectURL(file));
+  userImageThumbnail.style.display = "block";
+}
+
+function previewPetImage(input)
+{
+  const file = input.files[0];
+  petImageThumbnail.setAttribute('src', URL.createObjectURL(file));
+  petImageThumbnail.style.display = "block";
 }

@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Locations`
+-- Table structure for table `locations`
 --
 
-DROP TABLE IF EXISTS `Locations`;
+DROP TABLE IF EXISTS `locations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Locations` (
+CREATE TABLE `locations` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
   `street` varchar(50) DEFAULT NULL,
@@ -33,17 +33,18 @@ CREATE TABLE `Locations` (
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `Locations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `Locations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Locations`
+-- Dumping data for table `locations`
 --
 
-LOCK TABLES `Locations` WRITE;
-/*!40000 ALTER TABLE `Locations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Locations` ENABLE KEYS */;
+LOCK TABLES `locations` WRITE;
+/*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+INSERT INTO `locations` VALUES (1,1,'barrington street','halifax','nova scotia','canada','b3h4r4','9021111111'),(2,2,'spring garden road','halifax','nova scotia','canada','b3h1y3','9022222222'),(3,3,'quinpool road','halifax','nova scotia','canada','B3l4p8','9023333333'),(4,4,'barrington street','halifax','nova scotia','canada','b3h4r4','9024444444'),(5,5,'quinpool road','halifax','nova scotia','canada','b3l4p8','9025555555');
+/*!40000 ALTER TABLE `locations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-05  0:28:32
+-- Dump completed on 2022-02-05 15:55:56

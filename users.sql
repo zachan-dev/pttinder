@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Users`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `Users`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
@@ -33,16 +33,17 @@ CREATE TABLE `Users` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Users`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `Users` WRITE;
-/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'user1@gmail.com','$2b$10$zw52Et5ZWjotBAPQrhEw6uA8eP7/o29T9v9O2NX4jJY8ZalzxalUG','user1','Hi, I\'m \"user 1\".','man-with-large-dog.jpg',1,'2022-02-05 12:34:33'),(2,'user2@gmail.com','$2b$10$6iOQe.r2St1qHoEGE7cNvek6VvhJUTOSHLMxwLp9XT3GL6LMcCKCa','user2','Hi, I\'m \"user2\".','man-with-two-dogs.jpg',1,'2022-02-05 12:37:15'),(3,'user3@gmail.com','$2b$10$xhJJMsVEFkF4CjYwLiTbMuh11hUNx3DfWsb8qnIT9NPA3LCRcHvqO','user3','Hi, I\'m \"user 3\".','testimonial-one.jpg',1,'2022-02-05 12:43:41'),(4,'user4@gmail.com','$2b$10$32d88MTZQX0x7Ai3qA1HuOTfzfSN6YkT30CDQ9rl/EW6ONrRT0DMi','user4','Hi, I\'m user4','testimonial-three.jpg',0,'2022-02-05 12:48:10'),(5,'user5@gmail.com','$2b$10$0cJ4JzAdOEUo9nNFdzr4...mhMPYBIb.gCDincUfbIy.hulPuN8Ru','user5','Hi, i\'m user 5','testimonial-two.jpg',1,'2022-02-05 12:51:48');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-05  0:25:35
+-- Dump completed on 2022-02-05 15:55:32
