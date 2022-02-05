@@ -10,6 +10,7 @@ function enableOptions()
 	console.log("Debug: pet_owner is checked");
 	if(petOwnership.checked)
 	{
+
 		for(var i = 0; i < uncheck.length; i++) uncheck[i].removeAttribute("disabled");
 		document.getElementById("pet_type").removeAttribute("disabled");
 		document.getElementById("pet_type").required = this.checked;

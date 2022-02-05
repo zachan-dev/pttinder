@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <!-- Basic metadata -->
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,12 +23,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/7905e3a2f6.js" crossorigin="anonymous"></script>
   </head>
-  <body>
-    
-    <!-- Navigation-->
 
+  <body>
+    <!-- Navigation-->
     <nav>
       <div class="img-wrapper" onclick="window.open('/', '_self');">
         <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
@@ -38,23 +36,21 @@
       
       <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
         <a class="nav-link" href="/playdate">Playdates</a>
-        <a class="nav-link" href="/service">Services</a>
+        <a class="nav-link" href="/services">Services</a>
         <a class="nav-link" href="/adoption">Adoption</a>
-        <a class="nav-link" href="/about">About Nobody</a>
+        <a class="nav-link" href="/about">About Us</a>
         <a class="nav-link mobile-only" href="/signin">Sign-In</a>
+        <a class="nav-link mobile-only" href="/register">Register</a>
       </div>
 
       <div class="nav-wrapper-right">
-        
         <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
-        
         <a class="nav-link desktop-only" href="/signin">Sign-In</a>
-
+        <a class="nav-link desktop-only" href="/register">Register</a>
       </div>
     </nav>
 
     <!-- Main hero Image and video -->
-
     <header class="home-hero-video">
       <div class="text-wrapper">
         <h1><%= title %></h1>
@@ -66,9 +62,7 @@
     </header>
     
     <!-- Products and Services -->
-    
     <section class="products-services">
-      
       <div class="product-card">
         <img src="media/woman-walking-two-dogs.jpg" alt="A vector graphic of a woman walking two dogs" />
         <h5>Playdates</h5>
@@ -94,7 +88,6 @@
     </section>
 
     <!-- Mission & Vision Statement -->
-
     <section class="mission-vision">
       <div class="mission-container">
         <div class="mission-wrapper">
@@ -127,9 +120,7 @@
     </section>
 
     <!-- Testimonials-->
-
     <section class="testimonials">
-      
       <div class="swiper">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
@@ -188,7 +179,6 @@
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
       </div>
-
     </section>
 
     <!-- Footer -->

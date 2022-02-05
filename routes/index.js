@@ -3,6 +3,7 @@ const db = require('../database');
 const r = require('../resources');
 var router = express.Router();
 
+
 // For password encryption
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -24,6 +25,7 @@ router.get('/about', function (req, res, next) {
 });
 
 /* GET register page. */
+
 router.get('/register', function (req, res, next) {
   console.log(req.body);
   res.render('register', {
@@ -111,7 +113,6 @@ router.post('/register', function (req, res, next) {
             });
           }
         };
-
       }
     });
   });
@@ -146,6 +147,7 @@ router.get('/adoption', function (req, res, next) {
     page: 'Adoption',
   });
 });
+
 
 /* GET signin page. */
 router.get('/signin', function (req, res, next) {
@@ -188,7 +190,7 @@ router.post('/signin', function (req, res, next) {
   // });
 });
 
-/* GET signin page. */
+/* GET services page. */
 router.get('/services', function (req, res, next) {
   res.render('services', {
     title: r.APP_NAME,
