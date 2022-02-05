@@ -37,7 +37,7 @@ router.get('/register', function (req, res, next) {
 /* POST register page. */
 router.post('/register', function (req, res, next) {
   // console.log("Debug: body: %j", req.body);
-
+  console.log(req.body);
   // Table: Users
   let email = req.body.email;
   let password = req.body.password;
@@ -63,7 +63,9 @@ router.post('/register', function (req, res, next) {
 
   bcrypt.hash(password, saltRounds, function (err, hash) {
     // Insert into Users table
-    let users_sql = `INSERT INTO Users (email, password, description, user_name, user_image_url, looking_for_date) VALUES ('${email}', '${hash}', '${description}', '${user_name}', '${user_image_url}', '${looking_for_date}')`;
+    let users_sql = `INSERT INTO Users (email, password, description, user_name, user_image_url, looking_for_date) 
+    VALUES ('${email}', '${hash}', '${description}', '${user_name}', '${user_image_url}', '${looking_for_date}')`;
+
     db.query(users_sql, (err, result) => {
       if (err) {
         console.log("Users Error: %j", err);

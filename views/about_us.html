@@ -26,46 +26,27 @@
 
   <body>
     <!-- Navigation-->
+    <!-- Navigation-->
     <nav>
+      <div class="img-wrapper" onclick="window.open('/', '_self');">
+          <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
+      </div>
       
-        <div class="img-wrapper" onclick="window.open('./index.html', '_self');">
-          <img src="media/petharmony-logo.png" alt="Pet Harmony Logo - Picture of"/>
-        </div>
-        
-        <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
-          
-          <a class="nav-link" href="./playdate.html">
-            Playdates
-          </a>
-  
-          <a class="nav-link" href="">
-            Services
-          </a>
-  
-          <a class="nav-link" href="">
-            Adoption
-          </a>
-  
-          <a class="nav-link" href="./about_us.html">
-            About Us
-          </a>
-          
-          <a class="nav-link mobile-only" href="">
-            Sign-In
-          </a>
-  
-        </div>
-  
-        <div class="nav-wrapper-right">
-          
+      <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
+          <a class="nav-link" href="/playdate">Playdates</a>
+          <a class="nav-link" href="/services">Services</a>
+          <a class="nav-link" href="/adoption">Adoption</a>
+          <a class="nav-link" href="/about">About Us</a>
+          <a class="nav-link mobile-only" href="/signin">Sign-In</a>
+          <a class="nav-link mobile-only" href="/register">Register</a>
+      </div>
+
+      <div class="nav-wrapper-right">
           <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
-          
-          <a class="nav-link desktop-only" href="">
-            Sign-In
-          </a>
-  
-        </div>
-      </nav>
+          <a class="nav-link desktop-only" href="/signin">Sign-In</a>
+          <a class="nav-link desktop-only" href="/register">Register</a>
+      </div>
+  </nav>
 
     
       <!--<a href="https://placeholder.com">
