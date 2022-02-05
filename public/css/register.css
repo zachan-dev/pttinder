@@ -1,12 +1,13 @@
 body {
-    background-image: linear-gradient(
-        rgba(183, 84, 163, 0.44),
-        rgba(200, 181, 36, 0.515)
-    );
+
+  background-image: linear-gradient(
+    rgba(183, 84, 163, 0.44),
+    rgba(200, 181, 36, 0.515)
+  );
 }
 
-h1{
-    color: #344759;
+h1 {
+  color: #344759;
 }
 
 fieldset {

@@ -35,7 +35,7 @@ router.get('/register', function(req, res, next) {
 /* POST register page. */
 router.post('/register', function (req, res, next) {
   // console.log("Debug: body: %j", req.body);
-
+  console.log(req.body);
   // Table: Users
   let user_name = req.body.user_name;
   let email = db.escape(req.body.email);
