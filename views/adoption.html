@@ -38,15 +38,25 @@
                 <a class="nav-link" href="/services">Services</a>
                 <a class="nav-link" href="/adoption">Adoption</a>
                 <a class="nav-link" href="/about">About Us</a>
-                <a class="nav-link mobile-only" href="/signin">Sign-In</a>
-                <a class="nav-link mobile-only" href="/register">Register</a>
-            </div>
-    
-            <div class="nav-wrapper-right">
-                <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
-                <a class="nav-link desktop-only" href="/signin">Sign-In</a>
-                <a class="nav-link desktop-only" href="/register">Register</a>
-            </div>
+                <% if(user_id == null){ %>
+                    <a class="nav-link mobile-only" href="/signin">Sign-In</a>
+                    <a class="nav-link mobile-only" href="/register">Register</a>
+                  <% } else{ %>  
+                    <a class="nav-link mobile-only" href="/signout">Sign-Out</a>
+                 <% } %>
+            
+            
+                </div>
+            
+                <div class="nav-wrapper-right">
+                  <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
+            
+                  <% if(user_id == null){ %>
+                    <a class="nav-link desktop-only" href="/signin">Sign-In</a>
+                    <a class="nav-link desktop-only" href="/register">Register</a>
+                  <% } else{ %>  
+                    <a class="nav-link desktop-only" href="/signout">Sign-Out</a>
+                 <% } %>
         </nav>
 
         <!-- Hero Image -->
