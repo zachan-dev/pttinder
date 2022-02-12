@@ -11,7 +11,6 @@
 		<title><%= page %> | <%= title %></title>
 		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/nav.css">
-		<link rel="stylesheet" href="css/register.css">
 		<!-- Swiper -->
 		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 		<!-- Google Fonts -->
@@ -46,10 +45,25 @@
 			</div>
 		</nav>
 
-		<!-- Registration Form -->
-		<div class="marginContainer"></div>
+		<!-- Section showing logged in user -->
+		<section class="profile-section">
+			<div class="img-wrapper">
+				<img src="media/Graham.jpg" alt="placeholder IMG" />
+			</div>
+			<div class="text-wrapper">
+				<h4>Graham Tonelli</h4>
+				<p><strong>Bio:</strong><br>Hi, I'm Graham! I like to play tennis with my wife, watch YouTube and take my dog Simba for walks. I also like to code and learn!</p>
+				<p><strong>What I'm looking for:</strong><br>I'm looking to meet people to walk Simba with in my area!</p>
+			</div>
+		</section>
 
-		<div class="registration-container">
+		<!-- Section showing who has shown interest -->
+		
+		
+
+		<!-- Registration Form -->
+
+		<div class="profile-update" style="display: none">
 			<form method="POST" id="registration-form" onsubmit="return validate()">
 				<div class="title">
 					<h1>Sign Up</h1>

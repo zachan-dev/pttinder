@@ -172,6 +172,8 @@ router.post('/signin', function (req, res, next) {
           {
             console.log("Debug: result %j", result[0]);
             //req.session.user = result[0];
+            loggedIn = true;
+            currentUserEmail = email;
             res.redirect('/profile');
           }
           else
