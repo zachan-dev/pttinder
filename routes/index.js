@@ -9,17 +9,21 @@ const saltRounds = 10;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  user_id = req.session.user_id;
   res.render('index', { 
     title: r.APP_NAME, 
     page: 'Home',
+    user_id: user_id,
   });
 });
 
 /* GET about us page. */
 router.get('/about', function(req, res, next) {
+  user_id = req.session.user_id;
   res.render('about_us', { 
     title: r.APP_NAME, 
     page: 'About', 
+    user_id: user_id,
   });
 });
 
@@ -171,8 +175,11 @@ router.post('/signin', function (req, res, next) {
           if (data)
           {
             console.log("Debug: result %j", result[0]);
-            //req.session.user = result[0];
-            res.redirect('/profile');
+            req.session.user_id = result[0].id;
+            console.log("Debug: req.session.user_id %j", req.session.user_id);
+            console.log("Debug: user session: %j", req.session);
+
+            res.redirect('/');
           }
           else
           {
@@ -188,6 +195,17 @@ router.post('/signin', function (req, res, next) {
   });
 });
 
+router.get('/signout', (req, res)=>{
+  req.session.destroy(err => {
+      if(err){
+          return res.redirect('/');
+      }
+      // sessionStore.close()
+      res.clearCookie(process.env.SESS_NAME)
+      res.redirect('/signin')
+  })
+})
+
 /* GET profile page. */
 router.get('/profile', function(req, res, next) {
   res.render('profile', { 
@@ -198,14 +216,21 @@ router.get('/profile', function(req, res, next) {
 
 /* GET playdate page. */
 router.get('/playdate', function(req, res, next) {
+  user_id = req.session.user_id;
   res.render('playdate', { 
     title: r.APP_NAME, 
     page: 'Playdate',
+    user_id: user_id,
   });
 });
 
 /* GET adoption page. */
 router.get('/adoption', function(req, res, next) {
+  user_id = req.session.user_id;
+  res.render('adoption', { 
+    title: r.APP_NAME, 
+    page: 'Adoption',
+    user_id: user_id,
   // Create the SQL query to select all pet adoption records in the database.
   let sqlquery = `SELECT email, user_name, description, street, city, state, country,
     code, phone, pet_name, pet_type, pet_image_url
@@ -285,6 +310,11 @@ router.get('/searchadoptions', function (req, res, next) {
 
 /* GET services page. */
 router.get('/services', function (req, res, next) {
+  user_id = req.session.user_id;
+  res.render('services', {
+    title: r.APP_NAME,
+    page: 'Services',
+    user_id: user_id,
   // Create the SQL query to select all service records in the database.
   let sqlquery = `SELECT email, user_name, description, user_image_url, street, city,
     state, country, code, phone, service
