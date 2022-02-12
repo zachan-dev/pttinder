@@ -2,7 +2,6 @@ function validate()
 {
 	const petServices = document.getElementById("services");
 	const checkboxes = document.getElementsByClassName("checkable-service-options");
-	var okay = false;
 
 	if(petServices.checked)
 	{
@@ -10,8 +9,7 @@ function validate()
 		{
 			if(checkboxes[i].checked)
 			{
-				okay = true;
-				break;
+				return true;
 			}
 		}
 
@@ -23,4 +21,18 @@ function validate()
 	}
 
 	// submit form if okay is true or petServices unchecked.
+}
+
+function checkBeforeSearch()
+{
+	const parameters = document.getElementsByClassName("parameters");
+
+	for(var i = 0; i < parameters.length; i++)
+	{
+		if(parameters[i].value != '')
+		{
+			return true;
+		}
+	}
+	return false;
 }

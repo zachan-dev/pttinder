@@ -206,17 +206,157 @@ router.get('/playdate', function(req, res, next) {
 
 /* GET adoption page. */
 router.get('/adoption', function(req, res, next) {
-  res.render('adoption', { 
-    title: r.APP_NAME, 
-    page: 'Adoption',
+  // Create the SQL query to select all pet adoption records in the database.
+  let sqlquery = `SELECT email, user_name, description, street, city, state, country,
+    code, phone, pet_name, pet_type, pet_image_url
+  FROM
+    Ownerships JOIN Users    
+    ON Users.id = Ownerships.user_id
+      JOIN Locations
+      ON Users.id = Locations.user_id
+  WHERE lf_adoption = 1
+  ORDER BY pet_type ASC;`;
+
+  // Execute the SQL query.
+  db.query(sqlquery, (err, result) =>
+  {
+    if (err)
+    {
+        res.redirect("/"); // Redirect to the Home page in the event of an error.
+    }
+    else
+    {
+      // Render the services web page. The result of the query is assigned to the services placeholder in the template.
+      res.render("adoption", {
+        title: r.APP_NAME,
+        page: 'Adoption',
+        pets: result
+      });
+    }
+  });
+});
+
+/* Search adoption page */
+router.get('/searchadoptions', function (req, res, next) {
+  let pet_type = req.query.type;
+  let city = req.query.city;
+  let state = req.query.state;
+  let country = req.query.country;
+
+  let parameters = [pet_type, city, state, country];
+
+  let sql = `SELECT email, user_name, description, street, city, state, country,
+    code, phone, pet_name, pet_type, pet_image_url
+    FROM
+      Ownerships JOIN Users    
+      ON Users.id = Ownerships.user_id
+        JOIN Locations
+        ON Users.id = Locations.user_id
+    WHERE lf_adoption = 1
+      AND (pet_type LIKE ?
+        OR city LIKE ?
+        OR state LIKE ?
+        OR country LIKE ?);`;
+
+  db.query(sql, parameters, (err, result) => {
+    if (err)
+    {
+      console.log("Error: %j", err);
+    }
+    else
+    {
+      //console.log("Debug: %j", result);
+      if (result.length > 0)
+      {
+        // Render the services web page. The result of the query is assigned to the services placeholder in the template.
+        res.render("adoption", {
+          title: r.APP_NAME,
+          page: 'Adoption',
+          pets: result
+        });
+      }
+      else
+      {
+        res.redirect("/");
+      }
+    }
   });
 });
 
 /* GET services page. */
 router.get('/services', function (req, res, next) {
-  res.render('services', {
-    title: r.APP_NAME,
-    page: 'Services',
+  // Create the SQL query to select all service records in the database.
+  let sqlquery = `SELECT email, user_name, description, user_image_url, street, city,
+    state, country, code, phone, service
+    FROM
+      Services JOIN Users
+      ON Users.id = Services.user_id
+        JOIN Locations
+        ON Users.id = Locations.user_id
+    ORDER BY service ASC;`;
+
+  // Execute the SQL query.
+  db.query(sqlquery, (err, result) =>
+  {
+    if (err)
+    {
+        res.redirect("/"); // Redirect to the Home page in the event of an error.
+    }
+    else
+    {
+      // Render the services web page. The result of the query is assigned to the services placeholder in the template.
+      res.render("services", {
+        title: r.APP_NAME,
+        page: 'Services',
+        services: result
+      });
+    }
+  });
+});
+
+/* Search services page */
+router.get('/searchservices', function (req, res, next) {
+  let service = req.query.service;
+  let city = req.query.city;
+  let state = req.query.state;
+  let country = req.query.country;
+
+  let parameters = [service, city, state, country];
+
+  let sql = `SELECT email, user_name, description, user_image_url, street, city,
+  state, country, code, phone, service
+  FROM
+    Services JOIN Users
+    ON Users.id = Services.user_id
+      JOIN Locations
+      ON Users.id = Locations.user_id
+  WHERE service LIKE ?
+    OR city LIKE ?
+    OR state LIKE ?
+    OR country LIKE ?;`;
+
+  db.query(sql, parameters, (err, result) => {
+    if (err)
+    {
+      console.log("Error: %j", err);
+    }
+    else
+    {
+      //console.log("Debug: %j", result);
+      if (result.length > 0)
+      {
+        // Render the services web page. The result of the query is assigned to the services placeholder in the template.
+        res.render("services", {
+          title: r.APP_NAME,
+          page: 'Services',
+          services: result
+        });
+      }
+      else
+      {
+        res.redirect("/");
+      }
+    }
   });
 });
 
