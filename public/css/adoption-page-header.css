@@ -46,10 +46,9 @@
     margin: 10px auto;
 }
 
-
 .search-pets form .search-options {
     display: grid;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 100%;
     grid-template-rows: auto;
     justify-content: space-between;
 }
@@ -70,28 +69,6 @@ form .input-box input{
     border: 2px solid #b5b5b5;
     border-bottom: 3px solid #b5b5b5;
     padding-left: 8px;
-}
-
-.category-list{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-.category-list label{
-    display: flex;
-    align-items: center;
-}
-
-.category-list .dot{
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #b5b5b5;
-    margin-right: 10px;
-    border: 3px solid #344759;
 }
 
 .button{
