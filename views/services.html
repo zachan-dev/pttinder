@@ -61,38 +61,38 @@
                 <div class="search-container">
                     <div class="search-services">
                         <h1 class="title">Find a pet service</h1>
-                        <form action="">
+                        <form method="GET" action="/searchservices" onsubmit="return checkBeforeSearch()">
                             <div class="search-options">
                                 <div class="category">
-                                    <label for="service">Select a pet service</label>
-                                    <select id="service" name="service-options"> <!-- Make required when enabled -->
+                                    <label for="service">Search by pet service</label>
+                                    <select class="parameters" id="service" name="service"> <!-- Make required when enabled -->
                                         <option hidden disabled selected value> -- select an option -- </option>
-                                        <option value="pet-groomer">Pet Groomer</option>
-                                        <option value="pet-walker">Pet Walker</option>
-                                        <option value="pet-trainer">Pet Trainer</option>
-                                        <option value="pet-sitter">Pet Sitter</option>
-                                        <option value="pet-daycare">Pet Daycare</option>
-                                        <option value="pet-foods">Pet Foods</option>
-                                        <option value="pet-products">Pet Products</option>
-                                        <option value="pet-mobile-clinic">Pet Mobile Clinic</option>
-                                        <option value="pet-veterinarian">Pet Veterinarian</option>
-                                        <option value="pet-radio-show">Pet Radio Show</option>
+                                        <option value="groomer">Pet Groomer</option>
+                                        <option value="walker">Pet Walker</option>
+                                        <option value="trainer">Pet Trainer</option>
+                                        <option value="sitter">Pet Sitter</option>
+                                        <option value="daycare">Pet Daycare</option>
+                                        <option value="foods">Pet Foods</option>
+                                        <option value="products">Pet Products</option>
+                                        <option value="mobileClinic">Pet Mobile Clinic</option>
+                                        <option value="veterinarian">Pet Veterinarian</option>
+                                        <option value="radioShow">Pet Radio Show</option>
                                     </select>
                                 </div>
                         
                                 <div class="input-box">
-                                    <label for="service-provider">Or Input name of pet service provider</label>
-                                    <input type="text" id="service-provider" name="service-provider" placeholder="optional">
+                                    <label for="city">Or by city</label>
+                                    <input class="parameters" type="text" id="city" name="city" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
                                 </div>
 
-                                <div class="search-radius">
-                                    <label for="search-radius">Search Radius</label>
-                                    <select class="" id="search-radius" name="service-options"> <!-- Make required when enabled -->
-                                        <option value="5km">5 km</option>
-                                        <option value="10km">10 km</option>
-                                        <option value="50km">50 km</option>
-                                        <option value="100km">100 km</option>
-                                    </select>
+                                <div class="input-box">
+                                    <label for="state">Or by state</label>
+                                    <input class="parameters" type="text" id="state" name="state" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
+                                </div>
+
+                                <div class="input-box">
+                                    <label for="country">Or by country</label>
+                                    <input class="parameters" type="text" id="country" name="country" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
                                 </div>
                             </div>
 
@@ -105,8 +105,7 @@
 
         <!-- Adoption Page Content -->
         <section class="page-content">
-
-            <section class="featured-container">
+            <!-- <section class="featured-container">
                 <h1>Featured Services</h1>
 
                 <div>
@@ -160,86 +159,35 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <!-- All Services -->
             <section>
-                <h1>All Services</h1>
+                <h1>Services</h1>
 
                 <div class="all-services">
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-            
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-            
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-                
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-                
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-        
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
-        
-                    <div class="services-card">
-                        <img src="media/shiba-inu-1.jpg" alt="A vector graphic of a woman walking two dogs" />
-                        <h5>Shiba Inu</h5>
-                        <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
-                        <a class="more-button button" href="">Learn More</a>
-                    </div>
+                    <% services.forEach(function(service){ %>
+                        <div class="services-card">
+                            <img src='../media/<%= service.user_image_url %>' alt="A service provider picture" />
+                            <h5><%= service.service %></h5>
+                            <p><%= service.description %></p>
+                            <ul>
+                                <li>Provider: <%= service.user_name %></li>
+                                <li>Email: <%= service.email %></li>
+                                <li>Phone: <%= service.phone %></li>
+                                <li>Address: | <%= service.street %> | <%= service.city %> |
+                                    <%= service.state %> | <%= service.country %> | <%= service.code %> |
+                                </li>
+                            </ul>
+                        </div>
+                    <% }) %>
                 </div>
             </section>
         </section>
 
+        <!-- Form Logic -->
+        <script src="js/validate-form.js" type="text/javascript"></script>
+        <script src="js/validate-patterns.js" type="text/javascript"></script>
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <!-- Custom JS -->
