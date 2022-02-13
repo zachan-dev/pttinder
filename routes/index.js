@@ -1,7 +1,8 @@
-var express = require('express');
+const express = require('express');
+const upload = require('../upload');
 const db = require('../database');
 const r = require('../resources');
-var router = express.Router();
+const router = express.Router();
 
 /* For password encryption */
 const bcrypt = require('bcrypt');
@@ -37,14 +38,14 @@ router.get('/register', function(req, res, next) {
 });
 
 /* POST register page. */
-router.post('/register', function (req, res, next) {
+router.post('/register', upload.single('user_image'), function (req, res, next) {
   // console.log("Debug: body: %j", req.body);
   console.log(req.body);
   // Table: Users
   let user_name = req.body.user_name;
   let email = db.escape(req.body.email);
   let password = req.body.password;
-  let user_image_url = req.body.user_image;
+  let user_image = req.file;
   let description = db.escape(req.body.description);
   let lf_date = req.body.lf_date ? 1 : 0;
 
@@ -71,7 +72,7 @@ router.post('/register', function (req, res, next) {
   bcrypt.hash(password, saltRounds, function (err, hash){
     // Insert into Users table
     let users_sql = `INSERT INTO Users (email, password, user_name, description, user_image_url, lf_date)
-      VALUES (${email}, '${hash}', '${user_name}', ${description}, '${user_image_url}', '${lf_date}')`;
+      VALUES (${email}, '${hash}', '${user_name}', ${description}, '${user_image.path}', '${lf_date}')`;
 
     db.query(users_sql, (err, result) => {
       if (err) 
@@ -80,6 +81,7 @@ router.post('/register', function (req, res, next) {
       } 
       else 
       {
+        // Insert into Locations table
         let location_sql = `INSERT INTO Locations (user_id, street, city, state, country, code, phone)
           VALUES ((SELECT id FROM Users WHERE email = ${email}), '${street}', '${city}', '${state}', '${country}', '${code}', '${phone}')`;
 
@@ -232,6 +234,7 @@ router.get('/adoption', function(req, res, next) {
     title: r.APP_NAME, 
     page: 'Adoption',
     user_id: user_id,
+  });
   // Create the SQL query to select all pet adoption records in the database.
   let sqlquery = `SELECT email, user_name, description, street, city, state, country,
     code, phone, pet_name, pet_type, pet_image_url
@@ -316,6 +319,7 @@ router.get('/services', function (req, res, next) {
     title: r.APP_NAME,
     page: 'Services',
     user_id: user_id,
+  });
   // Create the SQL query to select all service records in the database.
   let sqlquery = `SELECT email, user_name, description, user_image_url, street, city,
     state, country, code, phone, service
