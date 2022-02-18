@@ -1,7 +1,8 @@
-var express = require('express');
+const express = require('express');
+const upload = require('../upload');
 const db = require('../database');
 const r = require('../resources');
-var router = express.Router();
+const router = express.Router();
 
 /* For password encryption */
 const bcrypt = require('bcrypt');
@@ -9,17 +10,21 @@ const saltRounds = 10;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  user_id = req.session.user_id;
   res.render('index', { 
     title: r.APP_NAME, 
     page: 'Home',
+    user_id: user_id,
   });
 });
 
 /* GET about us page. */
 router.get('/about', function(req, res, next) {
+  user_id = req.session.user_id;
   res.render('about_us', { 
     title: r.APP_NAME, 
     page: 'About', 
+    user_id: user_id,
   });
 });
 
@@ -33,14 +38,14 @@ router.get('/register', function(req, res, next) {
 });
 
 /* POST register page. */
-router.post('/register', function (req, res, next) {
+router.post('/register', upload.single('user_image'), function (req, res, next) {
   // console.log("Debug: body: %j", req.body);
   console.log(req.body);
   // Table: Users
   let user_name = req.body.user_name;
   let email = db.escape(req.body.email);
   let password = req.body.password;
-  let user_image_url = req.body.user_image;
+  let user_image = req.file;
   let description = db.escape(req.body.description);
   let lf_date = req.body.lf_date ? 1 : 0;
 
@@ -67,7 +72,7 @@ router.post('/register', function (req, res, next) {
   bcrypt.hash(password, saltRounds, function (err, hash){
     // Insert into Users table
     let users_sql = `INSERT INTO Users (email, password, user_name, description, user_image_url, lf_date)
-      VALUES (${email}, '${hash}', '${user_name}', ${description}, '${user_image_url}', '${lf_date}')`;
+      VALUES (${email}, '${hash}', '${user_name}', ${description}, '${user_image.path}', '${lf_date}')`;
 
     db.query(users_sql, (err, result) => {
       if (err) 
@@ -76,6 +81,7 @@ router.post('/register', function (req, res, next) {
       } 
       else 
       {
+        // Insert into Locations table
         let location_sql = `INSERT INTO Locations (user_id, street, city, state, country, code, phone)
           VALUES ((SELECT id FROM Users WHERE email = ${email}), '${street}', '${city}', '${state}', '${country}', '${code}', '${phone}')`;
 
@@ -171,8 +177,11 @@ router.post('/signin', function (req, res, next) {
           if (data)
           {
             console.log("Debug: result %j", result[0]);
-            //req.session.user = result[0];
-            res.redirect('/profile');
+            req.session.user_id = result[0].id;
+            console.log("Debug: req.session.user_id %j", req.session.user_id);
+            console.log("Debug: user session: %j", req.session);
+
+            res.redirect('/');
           }
           else
           {
@@ -188,6 +197,17 @@ router.post('/signin', function (req, res, next) {
   });
 });
 
+router.get('/signout', (req, res)=>{
+  req.session.destroy(err => {
+      if(err){
+          return res.redirect('/');
+      }
+      // sessionStore.close()
+      res.clearCookie(process.env.SESS_NAME)
+      res.redirect('/signin')
+  })
+})
+
 /* GET profile page. */
 router.get('/profile', function(req, res, next) {
   res.render('profile', { 
@@ -198,14 +218,22 @@ router.get('/profile', function(req, res, next) {
 
 /* GET playdate page. */
 router.get('/playdate', function(req, res, next) {
+  user_id = req.session.user_id;
   res.render('playdate', { 
     title: r.APP_NAME, 
     page: 'Playdate',
+    user_id: user_id,
   });
 });
 
 /* GET adoption page. */
 router.get('/adoption', function(req, res, next) {
+  user_id = req.session.user_id;
+  res.render('adoption', { 
+    title: r.APP_NAME, 
+    page: 'Adoption',
+    user_id: user_id,
+  });
   // Create the SQL query to select all pet adoption records in the database.
   let sqlquery = `SELECT email, user_name, description, street, city, state, country,
     code, phone, pet_name, pet_type, pet_image_url
@@ -285,6 +313,12 @@ router.get('/searchadoptions', function (req, res, next) {
 
 /* GET services page. */
 router.get('/services', function (req, res, next) {
+  user_id = req.session.user_id;
+  res.render('services', {
+    title: r.APP_NAME,
+    page: 'Services',
+    user_id: user_id,
+  });
   // Create the SQL query to select all service records in the database.
   let sqlquery = `SELECT email, user_name, description, user_image_url, street, city,
     state, country, code, phone, service
