@@ -234,6 +234,7 @@ router.get('/adoption', function(req, res, next) {
     title: r.APP_NAME, 
     page: 'Adoption',
     user_id: user_id,
+    pets: []
   });
   // Create the SQL query to select all pet adoption records in the database.
   let sqlquery = `SELECT email, user_name, description, street, city, state, country,
@@ -319,6 +320,7 @@ router.get('/services', function (req, res, next) {
     title: r.APP_NAME,
     page: 'Services',
     user_id: user_id,
+    services: []
   });
   // Create the SQL query to select all service records in the database.
   let sqlquery = `SELECT email, user_name, description, user_image_url, street, city,
