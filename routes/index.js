@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const upload = require('../upload');
 const db = require('../database');
@@ -8,31 +10,33 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+const pets_data = require('../pets_data');
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   user_id = req.session.user_id;
-  res.render('index', { 
-    title: r.APP_NAME, 
+  res.render('index', {
+    title: r.APP_NAME,
     page: 'Home',
     user_id: user_id,
   });
 });
 
 /* GET about us page. */
-router.get('/about', function(req, res, next) {
+router.get('/about', function (req, res, next) {
   user_id = req.session.user_id;
-  res.render('about_us', { 
-    title: r.APP_NAME, 
-    page: 'About', 
+  res.render('about_us', {
+    title: r.APP_NAME,
+    page: 'About',
     user_id: user_id,
   });
 });
 
 /* GET register page. */
-router.get('/register', function(req, res, next) {
+router.get('/register', function (req, res, next) {
   //console.log(req.body);
-  res.render('register', { 
-    title: r.APP_NAME, 
+  res.render('register', {
+    title: r.APP_NAME,
     page: 'Register',
   });
 });
@@ -69,29 +73,25 @@ router.post('/register', upload.single('user_image'), function (req, res, next) 
   // if services != ''
   let service_collection = req.body.service_options;
 
-  bcrypt.hash(password, saltRounds, function (err, hash){
+  bcrypt.hash(password, saltRounds, function (err, hash) {
     // Insert into Users table
     let users_sql = `INSERT INTO Users (email, password, user_name, description, user_image_url, lf_date)
       VALUES (${email}, '${hash}', '${user_name}', ${description}, '${user_image.path}', '${lf_date}')`;
 
     db.query(users_sql, (err, result) => {
-      if (err) 
-      {
+      if (err) {
         console.log("Users Error: %j", err);
-      } 
-      else 
-      {
+      }
+      else {
         // Insert into Locations table
         let location_sql = `INSERT INTO Locations (user_id, street, city, state, country, code, phone)
           VALUES ((SELECT id FROM Users WHERE email = ${email}), '${street}', '${city}', '${state}', '${country}', '${code}', '${phone}')`;
 
         db.query(location_sql, (err, result) => {
-          if (err)
-          {
+          if (err) {
             console.log("Location Error: %j", err);
-          } 
-          else
-          {
+          }
+          else {
             console.log("Location Debug: %j", result);
           }
         });
@@ -101,19 +101,16 @@ router.post('/register', upload.single('user_image'), function (req, res, next) 
 
         console.log("Debug: ownership: %j", req.body.pet_owner);
 
-        if (typeof req.body.pet_owner !== 'undefined')
-        {
+        if (typeof req.body.pet_owner !== 'undefined') {
           ownership_sql = `INSERT INTO Ownerships (user_id, pet_type, pet_name, pet_image_url, lf_playdate, lf_adoption)
             VALUES ((SELECT id FROM Users WHERE email = ${email}), '${pet_type}', '${pet_name}', '${pet_image_url}', '${lf_playdate}', '${lf_adoption}')`;
 
           console.log("Debug: ownership sql: %j", ownership_sql);
           db.query(ownership_sql, (err, result) => {
-            if (err)
-            {
+            if (err) {
               console.log("Ownership Error: %j", err);
             }
-            else
-            {
+            else {
               console.log("Ownership Debug: %j", result);
             }
           });
@@ -121,20 +118,16 @@ router.post('/register', upload.single('user_image'), function (req, res, next) 
 
         // Insert into Services table
         let services_sql;
-        if (typeof req.body.services !== 'undefined' && service_collection.length > 0)
-        {
-          for (let i = 0; i < service_collection.length; i++)
-          {
+        if (typeof req.body.services !== 'undefined' && service_collection.length > 0) {
+          for (let i = 0; i < service_collection.length; i++) {
             services_sql = `INSERT INTO Services (user_id, service)
               VALUES ((SELECT id FROM Users WHERE email = ${email}), '${service_collection[i]}')`;
 
             db.query(services_sql, (err, result) => {
-              if (err)
-              {
+              if (err) {
                 console.log("Services Error: %j", err);
               }
-              else
-              {
+              else {
                 console.log("Services Debug: %j", result);
               }
             });
@@ -151,9 +144,9 @@ router.post('/register', upload.single('user_image'), function (req, res, next) 
 });
 
 /* GET signin page. */
-router.get('/signin', function(req, res, next) {
-  res.render('signin', { 
-    title: r.APP_NAME, 
+router.get('/signin', function (req, res, next) {
+  res.render('signin', {
+    title: r.APP_NAME,
     page: 'Signin',
   });
 });
@@ -164,18 +157,14 @@ router.post('/signin', function (req, res, next) {
 
   let sql = `SELECT * FROM Users WHERE email = '${email}'`;
   db.query(sql, (err, result) => {
-    if (err)
-    {
+    if (err) {
       console.log("Error: %j", err);
     }
-    else
-    {
+    else {
       //console.log("Debug: %j", result);
-      if (result.length > 0)
-      {
+      if (result.length > 0) {
         bcrypt.compare(password, result[0].password, function (err, data) {
-          if (data)
-          {
+          if (data) {
             console.log("Debug: result %j", result[0]);
 
             req.session.user_id = result[0].id;
@@ -184,58 +173,66 @@ router.post('/signin', function (req, res, next) {
 
             res.redirect('/');
           }
-          else
-          {
+          else {
             res.redirect('/signin');
           }
         });
       }
-      else
-      {
+      else {
         res.redirect('/signin');
       }
     }
   });
 });
 
-router.get('/signout', (req, res)=>{
+router.get('/signout', (req, res) => {
   req.session.destroy(err => {
-      if(err){
-          return res.redirect('/');
-      }
-      // sessionStore.close()
-      res.clearCookie(process.env.SESS_NAME)
-      res.redirect('/signin')
+    if (err) {
+      return res.redirect('/');
+    }
+    // sessionStore.close()
+    res.clearCookie(process.env.SESS_NAME)
+    res.redirect('/signin')
   })
 })
 
 /* GET profile page. */
-router.get('/profile', function(req, res, next) {
-  res.render('profile', { 
-    title: r.APP_NAME, 
-    page: 'Profile', 
+router.get('/profile', function (req, res, next) {
+  res.render('profile', {
+    title: r.APP_NAME,
+    page: 'Profile',
   });
 });
 
 /* GET playdate page. */
-router.get('/playdate', function(req, res, next) {
+router.get('/playdate', function (req, res, next) {
   user_id = req.session.user_id;
-  res.render('playdate', { 
-    title: r.APP_NAME, 
+  res.render('playdate', {
+    title: r.APP_NAME,
     page: 'Playdate',
     user_id: user_id,
   });
 });
 
 /* GET adoption page. */
-router.get('/adoption', function(req, res, next) {
+router.get('/adoption', function (req, res, next) {
   user_id = req.session.user_id;
-  res.render('adoption', { 
-    title: r.APP_NAME, 
+  res.render('adoption', {
+    title: r.APP_NAME,
     page: 'Adoption',
     user_id: user_id,
-    pets: []
+    pets: pets_data.pets_data
   });
+
+  // <h5><%= pet.pet_name %> (<%= pet.pet_type%>)</h5>
+  // <p><% pet.description %></p>
+  // <ul>
+  //     <li>Owner: <%= pet.user_name %></li>
+  //     <li>Email: <%= pet.email %></li>
+  //     <li>Phone: <%= pet.phone %></li>
+  //     <li>Address: | <%= pet.street %> | <%= pet.city %> |
+  //         <%= pet.state %> | <%= pet.country %> | <%= pet.code %> |
+
   // Create the SQL query to select all pet adoption records in the database.
   let sqlquery = `SELECT email, user_name, description, street, city, state, country,
     code, phone, pet_name, pet_type, pet_image_url
@@ -248,19 +245,16 @@ router.get('/adoption', function(req, res, next) {
   ORDER BY pet_type ASC;`;
 
   // Execute the SQL query.
-  db.query(sqlquery, (err, result) =>
-  {
-    if (err)
-    {
-        res.redirect("/"); // Redirect to the Home page in the event of an error.
+  db.query(sqlquery, (err, result) => {
+    if (err) {
+      //res.redirect("/"); // Redirect to the Home page in the event of an error.
     }
-    else
-    {
+    else {
       // Render the services web page. The result of the query is assigned to the services placeholder in the template.
       res.render("adoption", {
         title: r.APP_NAME,
         page: 'Adoption',
-        pets: result
+        pets: pets_data
       });
     }
   });
@@ -289,15 +283,12 @@ router.get('/searchadoptions', function (req, res, next) {
         OR country LIKE ?);`;
 
   db.query(sql, parameters, (err, result) => {
-    if (err)
-    {
+    if (err) {
       console.log("Error: %j", err);
     }
-    else
-    {
+    else {
       //console.log("Debug: %j", result);
-      if (result.length > 0)
-      {
+      if (result.length > 0) {
         // Render the services web page. The result of the query is assigned to the services placeholder in the template.
         res.render("adoption", {
           title: r.APP_NAME,
@@ -305,8 +296,7 @@ router.get('/searchadoptions', function (req, res, next) {
           pets: result
         });
       }
-      else
-      {
+      else {
         res.redirect("/");
       }
     }
@@ -345,15 +335,12 @@ router.get('/searchservices', function (req, res, next) {
     OR country LIKE ?;`;
 
   db.query(sql, parameters, (err, result) => {
-    if (err)
-    {
+    if (err) {
       console.log("Error: %j", err);
     }
-    else
-    {
+    else {
       //console.log("Debug: %j", result);
-      if (result.length > 0)
-      {
+      if (result.length > 0) {
         // Render the services web page. The result of the query is assigned to the services placeholder in the template.
         res.render("services", {
           title: r.APP_NAME,
@@ -361,8 +348,7 @@ router.get('/searchservices', function (req, res, next) {
           services: result
         });
       }
-      else
-      {
+      else {
         res.redirect("/");
       }
     }
