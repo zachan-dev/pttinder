@@ -320,34 +320,6 @@ router.get('/services', function (req, res, next) {
     title: r.APP_NAME,
     page: 'Services',
     user_id: user_id,
-    services: []
-  });
-  // Create the SQL query to select all service records in the database.
-  let sqlquery = `SELECT email, user_name, description, user_image_url, street, city,
-    state, country, code, phone, service
-    FROM
-      Services JOIN Users
-      ON Users.id = Services.user_id
-        JOIN Locations
-        ON Users.id = Locations.user_id
-    ORDER BY service ASC;`;
-
-  // Execute the SQL query.
-  db.query(sqlquery, (err, result) =>
-  {
-    if (err)
-    {
-        res.redirect("/"); // Redirect to the Home page in the event of an error.
-    }
-    else
-    {
-      // Render the services web page. The result of the query is assigned to the services placeholder in the template.
-      res.render("services", {
-        title: r.APP_NAME,
-        page: 'Services',
-        services: result
-      });
-    }
   });
 });
 
