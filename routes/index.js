@@ -217,12 +217,7 @@ router.get('/playdate', function (req, res, next) {
 /* GET adoption page. */
 router.get('/adoption', function (req, res, next) {
   user_id = req.session.user_id;
-  res.render('adoption', {
-    title: r.APP_NAME,
-    page: 'Adoption',
-    user_id: user_id,
-    pets: dummy_data.data
-  });
+
 
   // <h5><%= pet.pet_name %> (<%= pet.pet_type%>)</h5>
   // <p><% pet.description %></p>
@@ -248,6 +243,12 @@ router.get('/adoption', function (req, res, next) {
   db.query(sqlquery, (err, result) => {
     if (err) {
       //res.redirect("/"); // Redirect to the Home page in the event of an error.
+      res.render('adoption', {
+        title: r.APP_NAME,
+        page: 'Adoption',
+        user_id: user_id,
+        pets: dummy_data.data
+      });
     }
     else {
       // Render the services web page. The result of the query is assigned to the services placeholder in the template.
@@ -297,7 +298,7 @@ router.get('/searchadoptions', function (req, res, next) {
         });
       }
       else {
-        res.redirect("/");
+        //res.redirect("/");
       }
     }
   });
