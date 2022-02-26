@@ -10,7 +10,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-const pets_data = require('../pets_data');
+const dummy_data = require('../pets_data');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -221,7 +221,7 @@ router.get('/adoption', function (req, res, next) {
     title: r.APP_NAME,
     page: 'Adoption',
     user_id: user_id,
-    pets: pets_data.pets_data
+    pets: dummy_data.data
   });
 
   // <h5><%= pet.pet_name %> (<%= pet.pet_type%>)</h5>

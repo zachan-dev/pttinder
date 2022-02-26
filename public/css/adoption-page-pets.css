@@ -30,7 +30,7 @@
 
 .pets-card img{
     width: calc(100% - 2rem);
-    max-width: 165px;
+    max-width: 250px;
     margin: 0 auto 1rem;
     border-radius: 12%;
 }
