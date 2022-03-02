@@ -35,12 +35,12 @@
                 <a class="nav-link" href="/services">Services</a>
                 <a class="nav-link" href="/adoption">Adoption</a>
                 <a class="nav-link" href="/about">About Us</a>
-                <% if(user_id == null){ %>
+                <!-- <% if(user_id == null){ %>
                     <a class="nav-link mobile-only" href="/signin">Sign-In</a>
                     <a class="nav-link mobile-only" href="/register">Register</a>
                   <% } else{ %>  
                     <a class="nav-link mobile-only" href="/signout">Sign-Out</a>
-                 <% } %>
+                 <% } %> -->
             
             
                 </div>
@@ -106,7 +106,7 @@
 
         <!-- Adoption Page Content -->
         <section class="page-content">
-            <!-- <section class="featured-container">
+            <section class="featured-container">
                 <h1>Featured Services</h1>
 
                 <div>
@@ -121,15 +121,15 @@
                             </p>
                         </div>
                         <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
+                            <img src="media/adoption/shiba-inu-1.jpg" alt="A shiba inu" />
                             <h5>Hair Removal</h5>
                         </div>
                         <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
+                            <img src="media/adoption/corgi1.jpg" alt="A shiba inu" />
                             <h5>Bathing</h5>
                         </div>
                         <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
+                            <img src="media/adoption/shiba-inu-2.jpg" alt="A shiba inu" />
                             <h5>Creative</h5>
                         </div>
                     </div>
@@ -147,42 +147,86 @@
                             </p>
                         </div>
                         <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
+                            <img src="media/adoption/shiba-inu-1.jpg" alt="A shiba inu" />
                             <h5>Obedience</h5>
                         </div>
                         <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
+                            <img src="media/adoption/corgi1.jpg" alt="A shiba inu" />
                             <h5>Agility</h5>
                         </div>
                         <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
+                            <img src="media/adoption/shiba-inu-2.jpg" alt="A shiba inu" />
                             <h5>Behavioural</h5>
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section>
 
             <!-- All Services -->
+            
             <section>
                 <h1>Services</h1>
 
-                <div class="all-services">
-                    <% services.forEach(function(service){ %>
+                <div class="services-section">
+                    <div class="all-services">
                         <div class="services-card">
-                            <img src='../media/<%= service.user_image_url %>' alt="A service provider picture" />
-                            <h5><%= service.service %></h5>
-                            <p><%= service.description %></p>
-                            <ul>
-                                <li>Provider: <%= service.user_name %></li>
-                                <li>Email: <%= service.email %></li>
-                                <li>Phone: <%= service.phone %></li>
-                                <li>Address: | <%= service.street %> | <%= service.city %> |
-                                    <%= service.state %> | <%= service.country %> | <%= service.code %> |
-                                </li>
-                            </ul>
+                            <ion-icon name="camera-outline"></ion-icon>
+                            <h5>Pet Photographer</h5>
+                            <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                            <a class="more-button button" href="">Learn More</a>
                         </div>
-                    <% }) %>
+                
+                        <div class="services-card">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <h5>Doggy Daycare</h5>
+                            <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                            <a class="more-button button" href="">Learn More</a>
+                        </div>
+                
+                        <div class="services-card">
+                            <ion-icon name="american-football-outline"></ion-icon>
+                            <h5>Pet Play</h5>
+                            <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                            <a class="more-button button" href="">Learn More</a>
+                        </div>
+        
+                        <div class="services-card">
+                            <ion-icon name="restaurant-outline"></ion-icon>
+                            <h5>Pet Restaurant</h5>
+                            <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                            <a class="more-button button" href="">Learn More</a>
+                        </div>
+        
+                        <div class="services-card">
+                            <ion-icon name="bandage-outline"></ion-icon>
+                            <h5>Mobile Clinic</h5>
+                            <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                            <a class="more-button button" href="">Learn More</a>
+                        </div>
+        
+                        <div class="services-card">
+                            <ion-icon name="shirt-outline"></ion-icon>
+                            <h5>Dog Clothes</h5>
+                            <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                            <a class="more-button button" href="">Learn More</a>
+                        </div>
+                    
+                        <div class="services-card">
+                            <ion-icon name="pizza-outline"></ion-icon>
+                            <h5>Treats and Food</h5>
+                            <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                            <a class="more-button button" href="">Learn More</a>
+                        </div>
+                    
+                        <div class="services-card">
+                            <ion-icon name="finger-print-outline"></ion-icon>
+                            <h5>Tag Engraver</h5>
+                            <p>You and your furry friend can find the purrfect playdate! Check out our playdate app for free!</p>
+                            <a class="more-button button" href="">Learn More</a>
+                        </div>
+                    </div>
                 </div>
+                
             </section>
         </section>
 
@@ -213,5 +257,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <!-- Custom JS -->
         <script src="js/mobile-menu.js" type="text/javascript"></script>
+          <!-- Icons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </body>
 </html>
