@@ -42,14 +42,17 @@ router.get('/register', function (req, res, next) {
 });
 
 /* POST register page. */
-router.post('/register', upload.single('user_image'), function (req, res, next) {
+router.post('/register', upload.fields([{name: 'user_image', maxCount: 1}, {name: 'pet_image', maxCount: 1}]), function (req, res, next) {
   // console.log("Debug: body: %j", req.body);
-  console.log(req.body);
+  console.log("body: %j", req.body);
+  console.log("req.file: %j", req.files);
+
   // Table: Users
   let user_name = req.body.user_name;
   let email = db.escape(req.body.email);
   let password = req.body.password;
-  let user_image = req.file;
+  let user_image = req.files['user_image'];
+  let pet_image = req.files['pet_image']; // Haven't used this yet
   let description = db.escape(req.body.description);
   let lf_date = req.body.lf_date ? 1 : 0;
 
@@ -136,9 +139,11 @@ router.post('/register', upload.single('user_image'), function (req, res, next) 
       }
     });
 
+    user_id = req.session.user_id;
     res.render('index', {
       title: r.APP_NAME,
       page: 'Home',
+      user_id: user_id,
     });
   });
 });
