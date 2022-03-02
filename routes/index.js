@@ -68,7 +68,7 @@ router.post('/register', upload.fields([{name: 'user_image', maxCount: 1}, {name
   // if pet_owner != ''
   let pet_type = req.body.pet_type;
   let pet_name = req.body.pet_name;
-  let pet_image_url = req.body.pet_image;
+  //let pet_image_url = req.body.pet_image;
   let lf_playdate = req.body.lf_playdate ? 1 : 0;
   let lf_adoption = req.body.lf_adoption ? 1 : 0;
 
@@ -106,7 +106,7 @@ router.post('/register', upload.fields([{name: 'user_image', maxCount: 1}, {name
 
         if (typeof req.body.pet_owner !== 'undefined') {
           ownership_sql = `INSERT INTO Ownerships (user_id, pet_type, pet_name, pet_image_url, lf_playdate, lf_adoption)
-            VALUES ((SELECT id FROM Users WHERE email = ${email}), '${pet_type}', '${pet_name}', '${pet_image_url}', '${lf_playdate}', '${lf_adoption}')`;
+            VALUES ((SELECT id FROM Users WHERE email = ${email}), '${pet_type}', '${pet_name}', '${pet_image.path}', '${lf_playdate}', '${lf_adoption}')`;
 
           console.log("Debug: ownership sql: %j", ownership_sql);
           db.query(ownership_sql, (err, result) => {

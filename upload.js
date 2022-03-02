@@ -4,7 +4,7 @@ const helpers = require('./helpers');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'uploads/');
+        cb(null, '/Users/senlin/Downloads/');
     },
 
     // By default, multer removes file extensions so let's add them back
