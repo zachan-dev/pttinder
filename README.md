@@ -30,6 +30,7 @@ A University project done by my peers and I.
     ```
 6. Run the server
     ```powershell
-    npm start
+    npm run dev  # for development
+    npm start    # for production
     ```
 7. Visit the server at http://localhost:3000
