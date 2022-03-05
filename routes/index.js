@@ -158,6 +158,7 @@ router.get('/signin', function(req, res, next) {
   });
 });
 
+/* POST Signin page */
 router.post('/signin', function (req, res, next) {
   let email = req.body.email;
   let password = req.body.password;
@@ -211,10 +212,29 @@ router.get('/signout', (req, res)=>{
 
 /* GET profile page. */
 router.get('/profile', function(req, res, next) {
-  res.render('profile', { 
-    title: r.APP_NAME, 
-    page: 'Profile', 
+  user_id = req.session.user_id;
+  let sqlquery = `SELECT * FROM users WHERE id = ` + user_id;
+
+  db.query(sqlquery, (err, result) => {
+    if(err || result[0] == undefined)
+    {
+      res.redirect("error");
+    }
+    else
+    {
+      res.render('profile', { 
+        title: r.APP_NAME, 
+        page: 'Profile',
+        name: result[0].user_name,
+        email: result[0].email,
+        description: result[0].description,
+        imgURL: result[0].user_image_url,
+        lf_date: result[0].lf_date
+      });
+      console.log('\n==========\n %s \n==========\n', result[0].email)
+    }
   });
+  console.log('\n==========\n %s \n==========\n', sqlquery)
 });
 
 /* GET playdate page. */
