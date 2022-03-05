@@ -30,7 +30,6 @@ router.get('/about', function(req, res, next) {
 
 /* GET register page. */
 router.get('/register', function(req, res, next) {
-  //console.log(req.body);
   res.render('register', { 
     title: r.APP_NAME, 
     page: 'Register',
@@ -39,8 +38,6 @@ router.get('/register', function(req, res, next) {
 
 /* POST register page. */
 router.post('/register', upload.single('user_image'), function (req, res, next) {
-  // console.log("Debug: body: %j", req.body);
-  console.log(req.body);
   // Table: Users
   let user_name = req.body.user_name;
   let email = db.escape(req.body.email);
@@ -212,7 +209,7 @@ router.get('/signout', (req, res)=>{
 
 /* GET profile page. */
 router.get('/profile', function(req, res, next) {
-  user_id = req.session.user_id;
+  let user_id = req.session.user_id;
   let sqlquery = `SELECT * FROM users WHERE id = ` + user_id;
 
   db.query(sqlquery, (err, result) => {

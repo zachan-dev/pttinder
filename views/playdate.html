@@ -1,69 +1,103 @@
 <!DOCTYPE html>
-<html lang ="en">
+<html lang="en">
   <!-- Basic metadata -->
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="application-name" content="Pet Harmony">
-    <meta name="author" content="Zach Chan">
-    <meta name="description" content="Prototype for Pet Harmony's 'Playdate' page ">
-    <meta name="keywords" content="meet people, meet dogs, pet playdates, dating, socialize">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="application-name" content="Pet Harmony" />
+    <meta name="author" content="Zach Chan" />
+    <meta
+      name="description"
+      content="Prototype for Pet Harmony's 'Playdate' page "
+    />
+    <meta
+      name="keywords"
+      content="meet people, meet dogs, pet playdates, dating, socialize"
+    />
     <title><%= page %> | <%= title %></title>
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/playdate-toggle.css">
-    <link rel="stylesheet" href="css/playdate-swipe.css">
-    <link rel="stylesheet" href="css/playdate-button.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/playdate-toggle.css" />
+    <link rel="stylesheet" href="css/playdate-swipe.css" />
+    <link rel="stylesheet" href="css/playdate-button.css" />
+    <link rel="stylesheet" href="css/footer.css" />
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/7905e3a2f6.js" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/7905e3a2f6.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
     <!-- Navigation-->
     <nav>
       <div class="img-wrapper" onclick="window.open('/', '_self');">
-        <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
+        <img
+          src="media/petharmony-logo.png"
+          alt="<%= title %> Logo - Picture of"
+        />
       </div>
-      
-      <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
+
+      <div
+        id="mobile-nav-menu"
+        data-open="false"
+        class="nav-wrapper-mid desktop-only"
+      >
         <a class="nav-link" href="/playdate">Playdates</a>
         <a class="nav-link" href="/services">Services</a>
         <a class="nav-link" href="/adoption">Adoption</a>
         <a class="nav-link" href="/about">About Us</a>
+
         <% if(user_id == null){ %>
-          <a class="nav-link mobile-only" href="/signin">Sign-In</a>
-          <a class="nav-link mobile-only" href="/register">Register</a>
-        <% } else{ %>  
-          <a class="nav-link mobile-only" href="/signout">Sign-Out</a>
-       <% } %>
-  
-  
+        <a class="nav-link mobile-only" href="/signin">Sign-In</a>
+        <a class="nav-link mobile-only" href="/register">Register</a>
+        <% } else{ %>
+        <a class="nav-link mobile-only" href="/signout">Sign-Out</a>
+        <a class="nav-link mobile-only" href="/profile">Profile</a>
+        <% } %>
       </div>
-  
+
       <div class="nav-wrapper-right">
         <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
-  
+
         <% if(user_id == null){ %>
-          <a class="nav-link desktop-only" href="/signin">Sign-In</a>
-          <a class="nav-link desktop-only" href="/register">Register</a>
-        <% } else{ %>  
-          <a class="nav-link desktop-only" href="/signout">Sign-Out</a>
-       <% } %>
+        <a class="nav-link desktop-only" href="/signin">Sign-In</a>
+        <a class="nav-link desktop-only" href="/register">Register</a>
+        <% } else{ %>
+        <a class="nav-link desktop-only" href="/signout">Sign-Out</a>
+        <a class="nav-link desktop-only" href="/profile">Profile</a>
+        <% } %>
+      </div>
     </nav>
 
     <!-- Toogle Switch -->
     <div class="btn-container">
       <label class="switch btn-playdate_mode-switch">
-        <input type="checkbox" name="playdate_mode" id="playdate_mode" value="1">
-        <label for="playdate_mode" data-on="Owners" data-off="Pets" class="btn-playdate_mode-switch-inner"></label>
+        <input
+          type="checkbox"
+          name="playdate_mode"
+          id="playdate_mode"
+          value="1"
+        />
+        <label
+          for="playdate_mode"
+          data-on="Owners"
+          data-off="Pets"
+          class="btn-playdate_mode-switch-inner"
+        ></label>
       </label>
     </div>
 
@@ -76,21 +110,21 @@
           <div class="swiper-slide">
             <div class="swiper inner-swiper">
               <!-- Additional required wrapper -->
-              <div class="swiper-wrapper" style="height: 400px;">
+              <div class="swiper-wrapper" style="height: 400px">
                 <!-- Slides -->
                 <div class="playdate-swipe swiper-slide">
                   <img class="playdate-img" src="media/playdate/pet-1.jpg" />
                 </div>
-    
+
                 <div class="playdate-swipe swiper-slide">
                   <img class="playdate-img" src="media/playdate/pet-2.jpg" />
                 </div>
-    
+
                 <div class="playdate-swipe swiper-slide">
                   <img class="playdate-img" src="media/playdate/pet-3.jpg" />
                 </div>
               </div>
-              
+
               <div class="playdate-info">
                 <h4>Roll, 3 yrs old</h4>
                 <h5>Dog</h5>
@@ -100,22 +134,22 @@
               <div class="swiper-pagination"></div>
             </div>
 
-            <div style="height: 10px;"></div>
+            <div style="height: 10px"></div>
           </div>
 
           <div class="swiper-slide">
             <div class="swiper inner-swiper">
               <!-- Additional required wrapper -->
-              <div class="swiper-wrapper" style="height: 400px;">
+              <div class="swiper-wrapper" style="height: 400px">
                 <!-- Slides -->
                 <div class="playdate-swipe swiper-slide">
                   <img class="playdate-img" src="media/testimonial-one.jpg" />
                 </div>
-    
+
                 <div class="playdate-swipe swiper-slide">
                   <img class="playdate-img" src="media/testimonial-two.jpg" />
                 </div>
-    
+
                 <div class="playdate-swipe swiper-slide">
                   <img class="playdate-img" src="media/testimonial-three.jpg" />
                 </div>
@@ -129,105 +163,145 @@
               <!-- If we need pagination -->
               <div class="swiper-pagination"></div>
             </div>
-            <div style="height: 10px;"></div>
+            <div style="height: 10px"></div>
           </div>
         </div>
 
         <div class="playdate-buttons">
-          <button class="playdate-button"> <!-- Rewind (Return) -->
+          <button class="playdate-button">
+            <!-- Rewind (Return) -->
             <div class="playdate-wrapper">
               <div class="ripple rewind"></div>
-              <svg class="playdate-shape rewind" width="24" height="24" viewBox="-5 -5 50 50">
-                <path d="M40.5,20.25c0,9.374-7.625,17-17,17c-1.656,0-3-1.343-3-3s1.344-3,3-3c6.064,0,11-4.936,11-11c0-6.065-4.936-11-11-11
+              <svg
+                class="playdate-shape rewind"
+                width="24"
+                height="24"
+                viewBox="-5 -5 50 50"
+              >
+                <path
+                  d="M40.5,20.25c0,9.374-7.625,17-17,17c-1.656,0-3-1.343-3-3s1.344-3,3-3c6.064,0,11-4.936,11-11c0-6.065-4.936-11-11-11
 c-5.756,0-10.486,4.447-10.953,10.086l1.832-1.832c1.171-1.172,3.071-1.172,4.242,0c1.172,1.171,1.172,3.071,0,4.242l-6.75,6.75
 c-0.563,0.562-1.326,0.879-2.121,0.879c-0.796,0-1.559-0.316-2.121-0.879l-6.75-6.75c-1.172-1.172-1.172-3.071,0-4.242
-c1.172-1.172,3.071-1.172,4.243,0l1.444,1.444c0.669-8.766,8-15.698,16.934-15.698C32.875,3.25,40.5,10.876,40.5,20.25z"/>
+c1.172-1.172,3.071-1.172,4.243,0l1.444,1.444c0.669-8.766,8-15.698,16.934-15.698C32.875,3.25,40.5,10.876,40.5,20.25z"
+                />
               </svg>
               <div class="particles" style="--total-particles: 6">
-                <div class="particle" style="--i: 1; --color: #7642F0"></div>
-                <div class="particle" style="--i: 2; --color: #AFD27F"></div>
-                <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
-                <div class="particle" style="--i: 4; --color: #D0516B"></div>
-                <div class="particle" style="--i: 5; --color: #5686F2"></div>
-                <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                <div class="particle" style="--i: 1; --color: #7642f0"></div>
+                <div class="particle" style="--i: 2; --color: #afd27f"></div>
+                <div class="particle" style="--i: 3; --color: #de8f4f"></div>
+                <div class="particle" style="--i: 4; --color: #d0516b"></div>
+                <div class="particle" style="--i: 5; --color: #5686f2"></div>
+                <div class="particle" style="--i: 6; --color: #d53ef3"></div>
               </div>
             </div>
           </button>
 
-          <button class="playdate-button"> <!-- Nope (X) -->
+          <button class="playdate-button">
+            <!-- Nope (X) -->
             <div class="playdate-wrapper">
               <div class="ripple nope"></div>
-              <svg class="playdate-shape nope" width="24" height="24" viewBox="0 0 100 100">
-                <path d="M84.707,68.752L65.951,49.998l18.75-18.752c0.777-0.777,0.777-2.036,0-2.813L71.566,15.295
+              <svg
+                class="playdate-shape nope"
+                width="24"
+                height="24"
+                viewBox="0 0 100 100"
+              >
+                <path
+                  d="M84.707,68.752L65.951,49.998l18.75-18.752c0.777-0.777,0.777-2.036,0-2.813L71.566,15.295
 c-0.777-0.777-2.037-0.777-2.814,0L49.999,34.047l-18.75-18.752c-0.746-0.747-2.067-0.747-2.814,0L15.297,28.431
 c-0.373,0.373-0.583,0.88-0.583,1.407c0,0.527,0.21,1.034,0.583,1.407L34.05,49.998L15.294,68.753
 c-0.373,0.374-0.583,0.88-0.583,1.407c0,0.528,0.21,1.035,0.583,1.407l13.136,13.137c0.373,0.373,0.881,0.583,1.41,0.583
 c0.525,0,1.031-0.21,1.404-0.583l18.755-18.755l18.756,18.754c0.389,0.388,0.896,0.583,1.407,0.583c0.511,0,1.019-0.195,1.408-0.583
-l13.138-13.137C85.484,70.789,85.484,69.53,84.707,68.752z"/>
+l13.138-13.137C85.484,70.789,85.484,69.53,84.707,68.752z"
+                />
               </svg>
               <div class="particles" style="--total-particles: 6">
-                <div class="particle" style="--i: 1; --color: #7642F0"></div>
-                <div class="particle" style="--i: 2; --color: #AFD27F"></div>
-                <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
-                <div class="particle" style="--i: 4; --color: #D0516B"></div>
-                <div class="particle" style="--i: 5; --color: #5686F2"></div>
-                <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                <div class="particle" style="--i: 1; --color: #7642f0"></div>
+                <div class="particle" style="--i: 2; --color: #afd27f"></div>
+                <div class="particle" style="--i: 3; --color: #de8f4f"></div>
+                <div class="particle" style="--i: 4; --color: #d0516b"></div>
+                <div class="particle" style="--i: 5; --color: #5686f2"></div>
+                <div class="particle" style="--i: 6; --color: #d53ef3"></div>
               </div>
             </div>
           </button>
 
-          <button class="playdate-button"> <!-- Star -->
+          <button class="playdate-button">
+            <!-- Star -->
             <div class="playdate-wrapper">
               <div class="ripple star"></div>
-              <svg class="playdate-shape star" width="24" height="24" viewBox="0 0 350 350">
-                <path d="M329.208,126.666c-1.765-5.431-6.459-9.389-12.109-10.209l-95.822-13.922l-42.854-86.837
+              <svg
+                class="playdate-shape star"
+                width="24"
+                height="24"
+                viewBox="0 0 350 350"
+              >
+                <path
+                  d="M329.208,126.666c-1.765-5.431-6.459-9.389-12.109-10.209l-95.822-13.922l-42.854-86.837
 c-2.527-5.12-7.742-8.362-13.451-8.362c-5.71,0-10.925,3.242-13.451,8.362l-42.851,86.836l-95.825,13.922
 c-5.65,0.821-10.345,4.779-12.109,10.209c-1.764,5.431-0.293,11.392,3.796,15.377l69.339,67.582L57.496,305.07
 c-0.965,5.628,1.348,11.315,5.967,14.671c2.613,1.899,5.708,2.865,8.818,2.865c2.387,0,4.784-0.569,6.979-1.723l85.711-45.059
 l85.71,45.059c2.208,1.161,4.626,1.714,7.021,1.723c8.275-0.012,14.979-6.723,14.979-15c0-1.152-0.13-2.275-0.376-3.352
-l-16.233-94.629l69.339-67.583C329.501,138.057,330.972,132.096,329.208,126.666z"/>
+l-16.233-94.629l69.339-67.583C329.501,138.057,330.972,132.096,329.208,126.666z"
+                />
               </svg>
               <div class="particles" style="--total-particles: 6">
-                <div class="particle" style="--i: 1; --color: #7642F0"></div>
-                <div class="particle" style="--i: 2; --color: #AFD27F"></div>
-                <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
-                <div class="particle" style="--i: 4; --color: #D0516B"></div>
-                <div class="particle" style="--i: 5; --color: #5686F2"></div>
-                <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                <div class="particle" style="--i: 1; --color: #7642f0"></div>
+                <div class="particle" style="--i: 2; --color: #afd27f"></div>
+                <div class="particle" style="--i: 3; --color: #de8f4f"></div>
+                <div class="particle" style="--i: 4; --color: #d0516b"></div>
+                <div class="particle" style="--i: 5; --color: #5686f2"></div>
+                <div class="particle" style="--i: 6; --color: #d53ef3"></div>
               </div>
             </div>
           </button>
 
-          <button class="playdate-button"> <!-- Love (Heart) -->
+          <button class="playdate-button">
+            <!-- Love (Heart) -->
             <div class="playdate-wrapper">
               <div class="ripple heart"></div>
-              <svg class="playdate-shape heart" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+              <svg
+                class="playdate-shape heart"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"
+                ></path>
               </svg>
               <div class="particles" style="--total-particles: 6">
-                <div class="particle" style="--i: 1; --color: #7642F0"></div>
-                <div class="particle" style="--i: 2; --color: #AFD27F"></div>
-                <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
-                <div class="particle" style="--i: 4; --color: #D0516B"></div>
-                <div class="particle" style="--i: 5; --color: #5686F2"></div>
-                <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                <div class="particle" style="--i: 1; --color: #7642f0"></div>
+                <div class="particle" style="--i: 2; --color: #afd27f"></div>
+                <div class="particle" style="--i: 3; --color: #de8f4f"></div>
+                <div class="particle" style="--i: 4; --color: #d0516b"></div>
+                <div class="particle" style="--i: 5; --color: #5686f2"></div>
+                <div class="particle" style="--i: 6; --color: #d53ef3"></div>
               </div>
             </div>
           </button>
 
-          <button class="playdate-button"> <!-- View Owner (Person) / View Pets (Dog) -->
+          <button class="playdate-button">
+            <!-- View Owner (Person) / View Pets (Dog) -->
             <div class="playdate-wrapper">
               <div class="ripple pet"></div>
-              <svg class="playdate-shape pet" width="24" height="24" viewBox="-3 -2 20 20">
-                <path d="M 9.412959,0.00215164 C 8.1693111,0.14587964 7.4631991,1.5093558 7.3733471,2.6936522 7.2264421,3.7464942 7.6860601,5.0899481 8.7918901,5.3320382 9.750208,5.4175142 10.512633,4.5171926 10.825819,3.6583651 11.195679,2.5833906 11.206482,1.147845 10.309038,0.34250684 10.059753,0.12647084 9.739671,-0.00476426 9.412959,0.00215164 z m -5.0729339,0.056367 c -1.034807,0.074858 -1.5652,1.27744256 -1.493223,2.24276386 0.0088,1.2907239 0.717612,2.7424122 2.010186,3.0488129 0.963956,0.1042448 1.606661,-0.9181087 1.66656,-1.812036 0.123011,-1.3680543 -0.483132,-3.02530546 -1.855765,-3.43834986 -0.106687,-0.029465 -0.217332,-0.044089 -0.327758,-0.041191 z M 12.655043,4.2036246 c -1.388365,0.1017608 -2.266355,1.5813816 -2.326691,2.9184062 -0.07305,0.8707439 0.489487,1.9657608 1.436683,1.9057498 C 13.181597,8.8776256 14.035636,7.298817 14.00043,5.9270567 13.99133,5.1373276 13.490879,4.2365389 12.655043,4.2036246 z M 0.01075614,6.0085263 c -0.12855096,1.481506 0.908149,3.1560203 2.41413596,3.2493013 0.912778,-0.06096 1.343188,-1.121093 1.238576,-1.9598358 C 3.5801081,6.0604403 2.7526501,4.7931558 1.6775691,4.6275979 0.60248914,4.4620399 -0.00628982,5.221568 0.01075614,6.0085263 z M 7.1593651,7.2723472 c -1.411887,0.00329 -2.70277,0.9264694 -3.392913,2.1755314 -0.578235,0.9334254 -1.050947,1.9901564 -1.140853,3.1053424 0.01967,0.860048 0.840276,1.575842 1.663122,1.404534 1.173683,-0.152345 2.222485,-0.967418 3.44297,-0.8147 1.014283,0.08097 1.8507729,0.867482 2.8748439,0.856051 0.994345,0.03734 1.56796,-1.102139 1.188753,-1.994632 C 11.387234,10.726579 10.596107,9.6151936 9.746977,8.6142466 9.069618,7.87643 8.1824521,7.2396817 7.1593651,7.2723472 z"/>
+              <svg
+                class="playdate-shape pet"
+                width="24"
+                height="24"
+                viewBox="-3 -2 20 20"
+              >
+                <path
+                  d="M 9.412959,0.00215164 C 8.1693111,0.14587964 7.4631991,1.5093558 7.3733471,2.6936522 7.2264421,3.7464942 7.6860601,5.0899481 8.7918901,5.3320382 9.750208,5.4175142 10.512633,4.5171926 10.825819,3.6583651 11.195679,2.5833906 11.206482,1.147845 10.309038,0.34250684 10.059753,0.12647084 9.739671,-0.00476426 9.412959,0.00215164 z m -5.0729339,0.056367 c -1.034807,0.074858 -1.5652,1.27744256 -1.493223,2.24276386 0.0088,1.2907239 0.717612,2.7424122 2.010186,3.0488129 0.963956,0.1042448 1.606661,-0.9181087 1.66656,-1.812036 0.123011,-1.3680543 -0.483132,-3.02530546 -1.855765,-3.43834986 -0.106687,-0.029465 -0.217332,-0.044089 -0.327758,-0.041191 z M 12.655043,4.2036246 c -1.388365,0.1017608 -2.266355,1.5813816 -2.326691,2.9184062 -0.07305,0.8707439 0.489487,1.9657608 1.436683,1.9057498 C 13.181597,8.8776256 14.035636,7.298817 14.00043,5.9270567 13.99133,5.1373276 13.490879,4.2365389 12.655043,4.2036246 z M 0.01075614,6.0085263 c -0.12855096,1.481506 0.908149,3.1560203 2.41413596,3.2493013 0.912778,-0.06096 1.343188,-1.121093 1.238576,-1.9598358 C 3.5801081,6.0604403 2.7526501,4.7931558 1.6775691,4.6275979 0.60248914,4.4620399 -0.00628982,5.221568 0.01075614,6.0085263 z M 7.1593651,7.2723472 c -1.411887,0.00329 -2.70277,0.9264694 -3.392913,2.1755314 -0.578235,0.9334254 -1.050947,1.9901564 -1.140853,3.1053424 0.01967,0.860048 0.840276,1.575842 1.663122,1.404534 1.173683,-0.152345 2.222485,-0.967418 3.44297,-0.8147 1.014283,0.08097 1.8507729,0.867482 2.8748439,0.856051 0.994345,0.03734 1.56796,-1.102139 1.188753,-1.994632 C 11.387234,10.726579 10.596107,9.6151936 9.746977,8.6142466 9.069618,7.87643 8.1824521,7.2396817 7.1593651,7.2723472 z"
+                />
               </svg>
               <div class="particles" style="--total-particles: 6">
-                <div class="particle" style="--i: 1; --color: #7642F0"></div>
-                <div class="particle" style="--i: 2; --color: #AFD27F"></div>
-                <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
-                <div class="particle" style="--i: 4; --color: #D0516B"></div>
-                <div class="particle" style="--i: 5; --color: #5686F2"></div>
-                <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                <div class="particle" style="--i: 1; --color: #7642f0"></div>
+                <div class="particle" style="--i: 2; --color: #afd27f"></div>
+                <div class="particle" style="--i: 3; --color: #de8f4f"></div>
+                <div class="particle" style="--i: 4; --color: #d0516b"></div>
+                <div class="particle" style="--i: 5; --color: #5686f2"></div>
+                <div class="particle" style="--i: 6; --color: #d53ef3"></div>
               </div>
             </div>
           </button>
@@ -237,10 +311,26 @@ l-16.233-94.629l69.339-67.583C329.501,138.057,330.972,132.096,329.208,126.666z"/
 
     <footer>
       <ul class="social-media">
-        <li><a href="https://www.twitter.com"><ion-icon name="logo-twitter"></ion-icon></a></li>
-        <li><a href="https://www.facebook.com"><ion-icon name="logo-facebook"></ion-icon></a></li>
-        <li><a href="https://www.instagram.com"><ion-icon name="logo-instagram"></ion-icon></a></li>
-        <li><a href="https://www.linkedin.com"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+        <li>
+          <a href="https://www.twitter.com"
+            ><ion-icon name="logo-twitter"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com"
+            ><ion-icon name="logo-facebook"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com"
+            ><ion-icon name="logo-instagram"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com"
+            ><ion-icon name="logo-linkedin"></ion-icon
+          ></a>
+        </li>
       </ul>
 
       <ul class="footer-page-nav">
@@ -256,7 +346,11 @@ l-16.233-94.629l69.339-67.583C329.501,138.057,330.972,132.096,329.208,126.666z"/
     </footer>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
     <!-- Swiper -->
     <script src="js/swiper-bundle.js"></script>
     <!-- Custom JS -->
