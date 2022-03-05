@@ -54,8 +54,8 @@ router.post(
     let user_name = req.body.user_name;
     let email = db.escape(req.body.email);
     let password = req.body.password;
-    let user_image = req.files["user_image"];
-    let pet_image = req.files["pet_image"]; // Haven't used this yet
+    let user_image = req.files["user_image"][0];
+    let pet_image = req.files["pet_image"][0];
     let description = db.escape(req.body.description);
     let lf_date = req.body.lf_date ? 1 : 0;
 
@@ -78,11 +78,13 @@ router.post(
     // Table: Services
     // if services != ''
     let service_collection = req.body.service_options;
+    let userImgPath = user_image.destination + user_image.filename;
+    let petImgPath = pet_image.destination + pet_image.filename;
 
     bcrypt.hash(password, saltRounds, function (err, hash) {
       // Insert into Users table
       let users_sql = `INSERT INTO Users (email, password, user_name, description, user_image_url, lf_date)
-      VALUES (${email}, '${hash}', '${user_name}', ${description}, '${user_image.path}', '${lf_date}')`;
+      VALUES (${email}, '${hash}', '${user_name}', ${description}, '${userImgPath}', '${lf_date}')`;
 
       db.query(users_sql, (err, result) => {
         if (err) {
@@ -107,7 +109,7 @@ router.post(
 
           if (typeof req.body.pet_owner !== "undefined") {
             ownership_sql = `INSERT INTO Ownerships (user_id, pet_type, pet_name, pet_image_url, lf_playdate, lf_adoption)
-            VALUES ((SELECT id FROM Users WHERE email = ${email}), '${pet_type}', '${pet_name}', '${pet_image.path}', '${lf_playdate}', '${lf_adoption}')`;
+            VALUES ((SELECT id FROM Users WHERE email = ${email}), '${pet_type}', '${pet_name}', '${petImgPath}', '${lf_playdate}', '${lf_adoption}')`;
 
             console.log("Debug: ownership sql: %j", ownership_sql);
             db.query(ownership_sql, (err, result) => {
@@ -220,10 +222,8 @@ router.get("/profile", function (req, res, next) {
         imgURL: result[0].user_image_url,
         lf_date: result[0].lf_date,
       });
-      console.log("\n==========\n %s \n==========\n", result[0].email);
     }
   });
-  console.log("\n==========\n %s \n==========\n", sqlquery);
 });
 
 /* GET playdate page. */
