@@ -67,18 +67,64 @@
         <a class="nav-link desktop-only" href="/register">Register</a>
       </div>
     </nav>
-    <div class="input-box">
-      <label for="city">Or by city</label>
-      <input
-        class="parameters"
-        type="text"
-        id="city"
-        name="city"
-        maxlength="25"
-        onkeyup="lettersWithSpace(this)"
-        placeholder="optional"
-      />
-    </div>
+
+    <!-- Search Field -->
+
+    <header>
+      <div class="hero-container">
+        <div class="search-container">
+          <div class="search-services">
+            <h1 class="title">Find a pet service</h1>
+            <form action="">
+              <div class="search-options">
+                <div class="category">
+                  <label for="service">Select a pet service</label>
+                  <select id="service" name="service-options">
+                    <!-- Make required when enabled -->
+                    <option hidden disabled selected value>
+                      -- select an option --
+                    </option>
+                    <option value="pet-groomer">Pet Groomer</option>
+                    <option value="pet-walker">Pet Walker</option>
+                    <option value="pet-trainer">Pet Trainer</option>
+                    <option value="pet-sitter">Pet Sitter</option>
+                    <option value="pet-daycare">Pet Daycare</option>
+                    <option value="pet-foods">Pet Foods</option>
+                    <option value="pet-products">Pet Products</option>
+                    <option value="pet-mobile-clinic">Pet Mobile Clinic</option>
+                    <option value="pet-veterinarian">Pet Veterinarian</option>
+                    <option value="pet-radio-show">Pet Radio Show</option>
+                  </select>
+                </div>
+
+                <div class="input-box">
+                  <label for="service-provider">Name of provider</label>
+                  <input
+                    type="text"
+                    id="service-provider"
+                    name="service-provider"
+                    placeholder="optional"
+                  />
+                </div>
+
+                <div class="search-radius">
+                  <label for="search-radius">Search Radius</label>
+                  <select class="" id="search-radius" name="service-options">
+                    <!-- Make required when enabled -->
+                    <option value="5km">5 km</option>
+                    <option value="10km">10 km</option>
+                    <option value="50km">50 km</option>
+                    <option value="100km">100 km</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="button">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <!-- Adoption Page Content -->
     <section class="page-content">
