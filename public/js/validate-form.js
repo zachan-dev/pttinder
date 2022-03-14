@@ -2,6 +2,7 @@ function validate()
 {
 	const petServices = document.getElementById("services");
 	const checkboxes = document.getElementsByClassName("checkable-service-options");
+	var okay = false;
 
 	if(petServices.checked)
 	{
@@ -13,7 +14,7 @@ function validate()
 			}
 		}
 
-		if(!okay)
+		if(okay == false)
 		{
 			alert("Select at least one service.");
 			return false; // Do not submit form if no services selected
@@ -23,6 +24,7 @@ function validate()
 	// submit form if okay is true or petServices unchecked.
 }
 
+// Does not submit if all fields empty
 function checkBeforeSearch()
 {
 	const parameters = document.getElementsByClassName("parameters");

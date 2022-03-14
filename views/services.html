@@ -1,217 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Basic metadata -->
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="application-name" content="Pet Harmony">
-        <meta name="author" content="Jeff Antoun">
-        <meta name="description" content="Prototype for Pet Harmony's 'Services' page ">
-        <meta name="keywords" content="pet services, pet grooming, dog walking, pets">
-        <title><%= page %> | <%= title %></title>
-        <link rel="stylesheet" href="css/base.css">
-        <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/services-page-header.css">
-        <link rel="stylesheet" href="css/services-page.css">
-        <link rel="stylesheet" href="css/footer.css">
-        <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://kit.fontawesome.com/7905e3a2f6.js" crossorigin="anonymous"></script>
-    </head>
+  <!-- Basic metadata -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="application-name" content="Pet Harmony" />
+    <meta name="author" content="Jeff Antoun" />
+    <meta
+      name="description"
+      content="Prototype for Pet Harmony's 'Services' page "
+    />
+    <meta
+      name="keywords"
+      content="pet services, pet grooming, dog walking, pets"
+    />
+    <title><%= page %> | <%= title %></title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/services-page-header.css" />
+    <link rel="stylesheet" href="css/services-page.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/7905e3a2f6.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-    <body>
-        <!-- Navigation-->
-        <nav>
-            <div class="img-wrapper" onclick="window.open('/', '_self');">
-                <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
+  <body>
+    <!-- Navigation-->
+    <nav>
+      <div class="img-wrapper" onclick="window.open('/', '_self');">
+        <img
+          src="media/petharmony-logo.png"
+          alt="<%= title %> Logo - Picture of"
+        />
+      </div>
+
+      <div
+        id="mobile-nav-menu"
+        data-open="false"
+        class="nav-wrapper-mid desktop-only"
+      >
+        <a class="nav-link" href="/playdate">Playdates</a>
+        <a class="nav-link" href="/services">Services</a>
+        <a class="nav-link" href="/adoption">Adoption</a>
+        <a class="nav-link" href="/about">About Us</a>
+
+        <% if(user_id == null){ %>
+        <a class="nav-link mobile-only" href="/signin">Sign-In</a>
+        <a class="nav-link mobile-only" href="/register">Register</a>
+        <% } else{ %>
+        <a class="nav-link mobile-only" href="/signout">Sign-Out</a>
+        <a class="nav-link mobile-only" href="/profile">Profile</a>
+        <% } %>
+      </div>
+
+      <div class="nav-wrapper-right">
+        <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
+
+        <% if(user_id == null){ %>
+        <a class="nav-link desktop-only" href="/signin">Sign-In</a>
+        <a class="nav-link desktop-only" href="/register">Register</a>
+        <% } else{ %>
+        <a class="nav-link desktop-only" href="/signout">Sign-Out</a>
+        <a class="nav-link desktop-only" href="/profile">Profile</a>
+        <% } %>
+      </div>
+    </nav>
+
+    <!-- Search Field -->
+    <header>
+      <div class="hero-container">
+        <div class="search-container">
+          <div class="search-services">
+            <h1 class="title">Find a pet service</h1>
+            <form method="GET" action="/searchservices" onsubmit="return checkBeforeSearch()">
+              <div class="search-options">
+                <div class="category">
+                  <label for="service">Search by pet service</label>
+                  <select class="parameters" id="service" name="service">
+                    <option hidden disabled selected value> -- select an option -- </option>
+                    <option value="groomer">Pet Groomer</option>
+                    <option value="walker">Pet Walker</option>
+                    <option value="trainer">Pet Trainer</option>
+                    <option value="sitter">Pet Sitter</option>
+                    <option value="daycare">Pet Daycare</option>
+                    <option value="foods">Pet Foods</option>
+                    <option value="products">Pet Products</option>
+                    <option value="mobileClinic">Pet Mobile Clinic</option>
+                    <option value="veterinarian">Pet Veterinarian</option>
+                    <option value="radioShow">Pet Radio Show</option>
+                  </select>
+                </div>
+        
+                <div class="input-box">
+                  <label for="city">Or by city</label>
+                  <input class="parameters" type="text" id="city" name="city" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
+                </div>
+
+                <div class="input-box">
+                  <label for="state">Or by state</label>
+                  <input class="parameters" type="text" id="state" name="state" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
+                </div>
+
+                <div class="input-box">
+                  <label for="country">Or by country</label>
+                  <input class="parameters" type="text" id="country" name="country" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
+                </div>
+              </div>
+
+              <button type="submit" class="button">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Adoption Page Content -->
+    <section class="page-content">
+      <section class="featured-container">
+        <h1>Featured Services</h1>
+
+        <div>
+          <h3>Your pet is more beautiful than you think</h3>
+
+          <div class="featured-services">
+            <div class="service-description">
+              <h4>Pet Grooming</h4>
+              <p>
+                Pet grooming refers to both the hygienic care and cleaning of a
+                pet, as well as a process by which a pet's physical appearance
+                is enhanced. Grooming is a vital part in the well-being and
+                healthiness of a pet, which can improve its quality of life.
+              </p>
             </div>
-            
-            <div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
-                <a class="nav-link" href="/playdate">Playdates</a>
-                <a class="nav-link" href="/services">Services</a>
-                <a class="nav-link" href="/adoption">Adoption</a>
-                <a class="nav-link" href="/about">About Us</a>
-                <% if(user_id == null){ %>
-                    <a class="nav-link mobile-only" href="/signin">Sign-In</a>
-                    <a class="nav-link mobile-only" href="/register">Register</a>
-                  <% } else{ %>  
-                    <a class="nav-link mobile-only" href="/signout">Sign-Out</a>
-                 <% } %>
-            
-            
-                </div>
-            
-                <div class="nav-wrapper-right">
-                  <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
-            
-                  <% if(user_id == null){ %>
-                    <a class="nav-link desktop-only" href="/signin">Sign-In</a>
-                    <a class="nav-link desktop-only" href="/register">Register</a>
-                  <% } else{ %>  
-                    <a class="nav-link desktop-only" href="/signout">Sign-Out</a>
-                 <% } %>
-        </nav>
-
-        <!-- Search Field -->
-        <header>
-            <div class="hero-container">
-                <div class="search-container">
-                    <div class="search-services">
-                        <h1 class="title">Find a pet service</h1>
-                        <form method="GET" action="/searchservices" onsubmit="return checkBeforeSearch()">
-                            <div class="search-options">
-                                <div class="category">
-                                    <label for="service">Search by pet service</label>
-                                    <select class="parameters" id="service" name="service"> <!-- Make required when enabled -->
-                                        <option hidden disabled selected value> -- select an option -- </option>
-                                        <option value="groomer">Pet Groomer</option>
-                                        <option value="walker">Pet Walker</option>
-                                        <option value="trainer">Pet Trainer</option>
-                                        <option value="sitter">Pet Sitter</option>
-                                        <option value="daycare">Pet Daycare</option>
-                                        <option value="foods">Pet Foods</option>
-                                        <option value="products">Pet Products</option>
-                                        <option value="mobileClinic">Pet Mobile Clinic</option>
-                                        <option value="veterinarian">Pet Veterinarian</option>
-                                        <option value="radioShow">Pet Radio Show</option>
-                                    </select>
-                                </div>
-                        
-                                <div class="input-box">
-                                    <label for="city">Or by city</label>
-                                    <input class="parameters" type="text" id="city" name="city" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
-                                </div>
-
-                                <div class="input-box">
-                                    <label for="state">Or by state</label>
-                                    <input class="parameters" type="text" id="state" name="state" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
-                                </div>
-
-                                <div class="input-box">
-                                    <label for="country">Or by country</label>
-                                    <input class="parameters" type="text" id="country" name="country" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
-                                </div>
-                            </div>
-
-                            <button type="submit" class="button">Search</button>
-                        </form>
-                    </div>
-                </div>
+            <div class="service-picture">
+              <img src="media/adoption/shiba-inu-1.jpg" alt="A shiba inu" />
+              <h5>Hair Removal</h5>
             </div>
-        </header>
-
-        <!-- Adoption Page Content -->
-        <section class="page-content">
-            <!-- <section class="featured-container">
-                <h1>Featured Services</h1>
-
-                <div>
-                    <h3>Your pet is more beautiful than you think</h3>
-
-                    <div class="featured-services">
-                        <div class="service-description">
-                            <h4>Pet Grooming</h4>
-                            <p>Pet grooming refers to both the hygienic care and cleaning of a pet, as well as a process
-                                by which a pet's physical appearance is enhanced. Grooming is a vital part in the well-being
-                                and healthiness of a pet, which can improve its quality of life.
-                            </p>
-                        </div>
-                        <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
-                            <h5>Hair Removal</h5>
-                        </div>
-                        <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
-                            <h5>Bathing</h5>
-                        </div>
-                        <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
-                            <h5>Creative</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3>Find the potential of your pet</h3>
-
-                    <div class="featured-services">
-                        <div class="service-description">
-                            <h4>Pet Training</h4>
-                            <p>Pet training is the application of behavioral analysis which uses the environmental events
-                                of antecedants and consequences to modify the pet's behaviour, either for it to assist in 
-                                specific activities or undertake particular tasks.
-                            </p>
-                        </div>
-                        <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
-                            <h5>Obedience</h5>
-                        </div>
-                        <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
-                            <h5>Agility</h5>
-                        </div>
-                        <div class="service-picture">
-                            <img src="media/shiba-inu-1.jpg" alt="A shiba inu" />
-                            <h5>Behavioural</h5>
-                        </div>
-                    </div>
-                </div>
-            </section> -->
-
-            <!-- All Services -->
-            <section>
-                <h1>Services</h1>
-
-                <div class="all-services">
-                    <% services.forEach(function(service){ %>
-                        <div class="services-card">
-                            <img src='../media/<%= service.user_image_url %>' alt="A service provider picture" />
-                            <h5><%= service.service %></h5>
-                            <p><%= service.description %></p>
-                            <ul>
-                                <li>Provider: <%= service.user_name %></li>
-                                <li>Email: <%= service.email %></li>
-                                <li>Phone: <%= service.phone %></li>
-                                <li>Address: | <%= service.street %> | <%= service.city %> |
-                                    <%= service.state %> | <%= service.country %> | <%= service.code %> |
-                                </li>
-                            </ul>
-                        </div>
-                    <% }) %>
-                </div>
-            </section>
-        </section>
-
-        <footer>
-            <ul class="social-media">
-              <li><a href="https://www.twitter.com"><ion-icon name="logo-twitter"></ion-icon></a></li>
-              <li><a href="https://www.facebook.com"><ion-icon name="logo-facebook"></ion-icon></a></li>
-              <li><a href="https://www.instagram.com"><ion-icon name="logo-instagram"></ion-icon></a></li>
-              <li><a href="https://www.linkedin.com"><ion-icon name="logo-linkedin"></ion-icon></a></li>
-            </ul>
-      
-            <ul class="footer-page-nav">
-              <li><a href="/playdate">Playdates</a></li>
-              <li><a href="/services">Services</a></li>
-              <li><a href="/adoption">Adoption</a></li>
-              <li><a href="/about">About Us</a></li>
-            </ul>
-      
-            <div class="description">
-              <p><b>© 2022, Members of the team Group 16 (Tutor Group 02)</b></p>
+            <div class="service-picture">
+              <img src="media/adoption/corgi1.jpg" alt="A shiba inu" />
+              <h5>Bathing</h5>
             </div>
-          </footer>
+            <div class="service-picture">
+              <img src="media/adoption/shiba-inu-2.jpg" alt="A shiba inu" />
+              <h5>Creative</h5>
+            </div>
+          </div>
+        </div>
 
-        <!-- Form Logic -->
-        <script src="js/validate-form.js" type="text/javascript"></script>
-        <script src="js/validate-patterns.js" type="text/javascript"></script>
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <!-- Custom JS -->
-        <script src="js/mobile-menu.js" type="text/javascript"></script>
-    </body>
+        <div>
+          <h3>Find the potential of your pet</h3>
+
+          <div class="featured-services">
+            <div class="service-description">
+              <h4>Pet Training</h4>
+              <p>
+                Pet training is the application of behavioral analysis which
+                uses the environmental events of antecedants and consequences to
+                modify the pet's behaviour, either for it to assist in specific
+                activities or undertake particular tasks.
+              </p>
+            </div>
+            <div class="service-picture">
+              <img src="media/adoption/shiba-inu-1.jpg" alt="A shiba inu" />
+              <h5>Obedience</h5>
+            </div>
+            <div class="service-picture">
+              <img src="media/adoption/corgi1.jpg" alt="A shiba inu" />
+              <h5>Agility</h5>
+            </div>
+            <div class="service-picture">
+              <img src="media/adoption/shiba-inu-2.jpg" alt="A shiba inu" />
+              <h5>Behavioural</h5>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- All Services -->
+      <section>
+        <h1>Service Categories</h1>
+
+        <div class="all-services">
+          <div class="services-card">
+            <ion-icon name="camera-outline"></ion-icon>
+            <h5>Pet Photographer</h5>
+            <p>
+              You and your furry friend can find the purrfect playdate! Check
+              out our playdate app for free!
+            </p>
+            <a class="more-button button" href="">Learn More</a>
+          </div>
+
+          <div class="services-card">
+            <ion-icon name="home-outline"></ion-icon>
+            <h5>Doggy Daycare</h5>
+            <p>
+              You and your furry friend can find the purrfect playdate! Check
+              out our playdate app for free!
+            </p>
+            <a class="more-button button" href="">Learn More</a>
+          </div>
+
+          <div class="services-card">
+            <ion-icon name="american-football-outline"></ion-icon>
+            <h5>Pet Play</h5>
+            <p>
+              You and your furry friend can find the purrfect playdate! Check
+              out our playdate app for free!
+            </p>
+            <a class="more-button button" href="">Learn More</a>
+          </div>
+
+          <div class="services-card">
+            <ion-icon name="restaurant-outline"></ion-icon>
+            <h5>Pet Restaurant</h5>
+            <p>
+              You and your furry friend can find the purrfect playdate! Check
+              out our playdate app for free!
+            </p>
+            <a class="more-button button" href="">Learn More</a>
+          </div>
+
+          <div class="services-card">
+            <ion-icon name="bandage-outline"></ion-icon>
+            <h5>Mobile Clinic</h5>
+            <p>
+              You and your furry friend can find the purrfect playdate! Check
+              out our playdate app for free!
+            </p>
+            <a class="more-button button" href="">Learn More</a>
+          </div>
+
+          <div class="services-card">
+            <ion-icon name="shirt-outline"></ion-icon>
+            <h5>Dog Clothes</h5>
+            <p>
+              You and your furry friend can find the purrfect playdate! Check
+              out our playdate app for free!
+            </p>
+            <a class="more-button button" href="">Learn More</a>
+          </div>
+
+          <div class="services-card">
+            <ion-icon name="pizza-outline"></ion-icon>
+            <h5>Treats and Food</h5>
+            <p>
+              You and your furry friend can find the purrfect playdate! Check
+              out our playdate app for free!
+            </p>
+            <a class="more-button button" href="">Learn More</a>
+          </div>
+
+          <div class="services-card">
+            <ion-icon name="finger-print-outline"></ion-icon>
+            <h5>Tag Engraver</h5>
+            <p>
+              You and your furry friend can find the purrfect playdate! Check
+              out our playdate app for free!
+            </p>
+            <a class="more-button button" href="">Learn More</a>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h1>Services</h1>
+        
+        <div class="all-services">
+          <% services.forEach(function(service){ %>
+            <div class="services-card">
+              <img src="../<%= service.user_image_url %>" alt="A service provider picture" />
+              <h5><%= service.service %></h5>
+              <p><%= service.description %></p>
+              <ul>
+                <li>Provider: <%= service.user_name %></li>
+                <li>Email: <%= service.email %></li>
+                <li>Phone: <%= service.phone %></li>
+                <li>Address: | <%= service.street %> | <%= service.city %> |
+                  <%= service.state %> | <%= service.country %> | <%= service.code %> |
+                </li>
+              </ul>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+    </section>
+
+    <footer>
+      <ul class="social-media">
+        <li>
+          <a href="https://www.twitter.com"
+            ><ion-icon name="logo-twitter"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com"
+            ><ion-icon name="logo-facebook"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com"
+            ><ion-icon name="logo-instagram"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com"
+            ><ion-icon name="logo-linkedin"></ion-icon
+          ></a>
+        </li>
+      </ul>
+
+      <ul class="footer-page-nav">
+        <li><a href="/playdate">Playdates</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/adoption">Adoption</a></li>
+        <li><a href="/about">About Us</a></li>
+      </ul>
+
+      <div class="description">
+        <p><b>© 2022, Members of the team Group 16 (Tutor Group 02)</b></p>
+      </div>
+    </footer>
+
+    <!-- Form Logic -->
+    <script src="js/validate-form.js" type="text/javascript"></script>
+    <script src="js/validate-patterns.js" type="text/javascript"></script>
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom JS -->
+    <script src="js/mobile-menu.js" type="text/javascript"></script>
+    <!-- Icons -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

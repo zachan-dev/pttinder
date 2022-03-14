@@ -39,7 +39,7 @@ const options ={
     createDatabaseTable: true
 }
 
-const  sessionStore = new mysqlStore(options);
+const sessionStore = new mysqlStore(options);
 
 app.use(session({
   name: process.env.SESS_NAME,

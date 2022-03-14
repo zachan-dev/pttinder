@@ -1,20 +1,16 @@
-/* .pets-information{
-    margin-top: 2%; 
-} */
-
 .page-content{
     margin: 2%;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 25px;
+    grid-template-columns: 1fr 5fr;
     grid-template-rows: auto;
+    grid-gap: 50px;
 }
 
 .all-pets{
-    margin-top: 2%;
     display: flex;
-    grid-gap: 30px;
-    flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    font-size: 1.2rem;
 }
 
 .pets-card{
@@ -22,13 +18,15 @@
     border-radius: 16px;
     box-shadow: 3px 3px 8px 4px rgba(0,0,0,0.15);
     max-width: 200px;
-    max-height: 450px;
-    padding: 2%;
+    max-height: 400px;
+    padding: 5%;
+    margin-right: 2%;
+    margin-top: 1%;
 }
 
 .pets-card img{
     width: calc(100% - 2rem);
-    max-width: 165px;
+    max-width: 250px;
     margin: 0 auto 1rem;
     border-radius: 12%;
 }

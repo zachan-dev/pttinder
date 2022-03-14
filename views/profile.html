@@ -1,289 +1,238 @@
 <!DOCTYPE html>
 <html>
-	<!-- Basic metadata -->
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="application-name" content="Pet Harmony">
-		<meta name="author" content="Jeff Antoun">
-		<meta name="description" content="Prototype for Pet Harmony's 'Profile' page ">
-		<meta name="keywords" content="pet harmony, create account">
-		<title><%= page %> | <%= title %></title>
-		<link rel="stylesheet" href="css/base.css">
-		<link rel="stylesheet" href="css/nav.css">
-		<link rel="stylesheet" href="css/register.css">
-		<link rel="stylesheet" href="css/footer.css">
-		<!-- Swiper -->
-		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap" rel="stylesheet">
-		<!-- Font Awesome -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script src="https://kit.fontawesome.com/7905e3a2f6.js" crossorigin="anonymous"></script>
-	</head>
-	
-	<body>
-		<!-- Navigation-->
-		<nav>
-			<div class="img-wrapper" onclick="window.open('/', '_self');">
-			  <img src="media/petharmony-logo.png" alt="<%= title %> Logo - Picture of"/>
-			</div>
-			
-			<div id="mobile-nav-menu" data-open=false class="nav-wrapper-mid desktop-only">
-			  <a class="nav-link" href="/playdate">Playdates</a>
-			  <a class="nav-link" href="/services">Services</a>
-			  <a class="nav-link" href="/adoption">Adoption</a>
-			  <a class="nav-link" href="/about">About Us</a>
-			  <a class="nav-link mobile-only" href="/signin">Sign-Out</a>
-			  <a class="nav-link mobile-only" href="/profile">Profile</a>
-			</div>
-	  
-			<div class="nav-wrapper-right">
-			  <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
-			  <a class="nav-link desktop-only" href="/signin">Sign-Out</a>
-			  <a class="nav-link desktop-only" href="/profile">Profile</a>
-			</div>
-		</nav>
+  <!-- Basic metadata -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="application-name" content="Pet Harmony" />
+    <meta name="author" content="Jeff Antoun" />
+    <meta
+      name="description"
+      content="Prototype for Pet Harmony's 'Profile' page "
+    />
+    <meta name="keywords" content="pet harmony, create account" />
+    <title><%= page %> | <%= title %></title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/7905e3a2f6.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-		<!-- Registration Form -->
-		<div class="marginContainer"></div>
+  <body>
+    <!-- Navigation-->
+    <nav>
+      <div class="img-wrapper" onclick="window.open('/', '_self');">
+        <img
+          src="media/petharmony-logo.png"
+          alt="<%= title %> Logo - Picture of"
+        />
+      </div>
 
-		<div class="registration-container">
-			<form method="POST" id="registration-form" onsubmit="return validate()">
-				<div class="title">
-					<h1>Sign Up</h1>
-				</div>
+      <div
+        id="mobile-nav-menu"
+        data-open="false"
+        class="nav-wrapper-mid desktop-only"
+      >
+        <a class="nav-link" href="/playdate">Playdates</a>
+        <a class="nav-link" href="/services">Services</a>
+        <a class="nav-link" href="/adoption">Adoption</a>
+        <a class="nav-link" href="/about">About Us</a>
 
-				<fieldset id="identifying-information">
-					<legend>Identity</legend>
+        <% if(user_id == null){ %>
+        <a class="nav-link mobile-only" href="/signin">Sign-In</a>
+        <a class="nav-link mobile-only" href="/register">Register</a>
+        <% } else{ %>
+        <a class="nav-link mobile-only" href="/signout">Sign-Out</a>
+        <a class="nav-link mobile-only" href="/profile">Profile</a>
+        <% } %>
+      </div>
 
-					<div>
-						<label class="required" for="user_name">User Name</label><br>
-						<input class="input-box" type="text" name="user_name" id="user_name" maxlength="20" onkeyup="alphanumeric(this)" required>
-					</div>
+      <div class="nav-wrapper-right">
+        <i class="fas fa-bars mobile-only" id="mobile-nav-icon"></i>
 
-					<div>
-						<label class="required" for="email">Email</label><br>
-						<input class="input-box" type="email" name="email" id="email" maxlength="25" required>
-					</div>
+        <% if(user_id == null){ %>
+        <a class="nav-link desktop-only" href="/signin">Sign-In</a>
+        <a class="nav-link desktop-only" href="/register">Register</a>
+        <% } else{ %>
+        <a class="nav-link desktop-only" href="/signout">Sign-Out</a>
+        <a class="nav-link desktop-only" href="/profile">Profile</a>
+        <% } %>
+      </div>
+    </nav>
 
-					<div>
-						<label class="required" for="password">Password</label><br>
-						<input class="input-box" type="password" name="password" id="password" maxlength="20" required>
-					</div>
+    <!-- Section showing logged in user -->
+    <section class="profile-section">
+      <div class="img-wrapper">
+        <img src="media/Graham.jpg" alt="placeholder IMG" />
+      </div>
+      <div class="text-wrapper">
+        <h4 id="edit-profile">
+          <%= name %>
+          <img
+            class="edit-profile-icon"
+            src="media/icons/pencil.svg"
+            alt="Edit Profile"
+          />
+          <!-- TODO : Only show this to the right user / logged in owner.-->
+        </h4>
+        <p><strong>Bio:</strong><br /><%= description %></p>
+        <p>
+          <strong>What I'm looking for:</strong><br />I'm looking to meet people
+          to walk Simba with in my area!
+        </p>
+      </div>
 
-					<div>
-						<label class="required" for="user_image">User Image (png or jpeg)</label><br>
-						<input type="file" name="user_image" id="user_image" accept=".png, .jpeg, .jpg" onchange="previewUserImage(this)" required>
-					</div>
+      <div class="img-wrapper">
+        <img src="media/simba.jpg" alt="placeholder IMG" />
+      </div>
+      <div class="text-wrapper">
+        <h4>Simba</h4>
+        <p>
+          <strong>Bio:</strong><br />Meet Simba! He likes eating food, sleeping,
+          smelling things and going for walks.
+        </p>
+        <p>
+          <strong>What I'm looking for:</strong><br />I'm looking for someone to
+          go on walks with!
+        </p>
+      </div>
+    </section>
 
-					<div class="preview">
-						<img src="" tabindex="-1" id="user-image-thumbnail" />
-					</div>
+    <!-- TODO Section showing who has shown interest -->
 
-					<div>
-						<label class="required" for="description">Description:</label><br>
-						<textarea class="input-box" rows="5" cols="60" name="description" id="description" maxlength="200" placeholder="max 200 char" required></textarea>
-					</div>
-				</fieldset>
+    <!-- Edit Profile Modal-->
 
-				<fieldset id="location-information">
-					<legend>Location</legend>
+    <div id="edit-profile-modal" style="display: none">
+      <div class="form-wrapper">
+        <span id="close-edit">&times;</span>
+        <h2>Edit Profile</h2>
 
-					<div>
-						<label for="street">Street Name</label><br>
-						<input class="input-box" type="text" name="street" id="street" maxlength="25" onkeyup="alphanumericWithSpace(this)">
-					</div>
+        <form method="POST" id="edit-profile-form" onsubmit="return validate()">
+          <label for="user_name">
+            <p>Change User Name</p>
+            <input
+              type="text"
+              name="user_name"
+              id="user_name"
+              maxlength="20"
+              onkeyup="alphanumeric(this)"
+            />
+          </label>
 
-					<div>
-						<label class="required" for="city">City</label><br>
-						<input class="input-box" type="text" name="city" id="city" maxlength="25" onkeyup="lettersWithSpace(this)" required>
-					</div>
+          <label class="required" for="user_image">
+            <p>Change User Image (png or jpeg)</p>
+            <input
+              type="file"
+              name="user_image"
+              id="user_image"
+              accept=".png, .jpeg, .jpg"
+              onchange="previewUserImage(this)"
+            />
+          </label>
 
-					<div>
-						<label for="state">State/Province</label><br>
-						<input class="input-box" type="text" name="state" id="state" maxlength="25" onkeyup="lettersWithSpace(this)">
-					</div>
+          <div class="preview">
+            <img src="" tabindex="-1" id="user-image-thumbnail" />
+          </div>
 
-					<div>
-						<label class="required" for="country">Country</label><br>
-						<input class="input-box" type="text" name="country" id="country" maxlength="25" onkeyup="lettersWithSpace(this)" required>
-					</div>
+          <label class="required" for="description">
+            <p>Change Bio:</p>
+            <textarea
+              class="input-box"
+              rows="7"
+              cols="25"
+              name="description"
+              id="description"
+              maxlength="200"
+              placeholder="Maximum 200 characters."
+              required
+            ></textarea>
+          </label>
 
-					<div>
-						<label for="code">Postal/Zip Code</label><br>
-						<input class="input-box" type="text" name="code" id="code" maxlength="10" onkeyup="alphanumeric(this)">
-					</div>
+          <div class="button-wrapper">
+            <input
+              class="button button-primary"
+              type="submit"
+              id="submit_form"
+              value="Update"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
 
-					<div>
-						<label for="phone">Phone</label><br>
-						<input class="input-box" type="tel" name="phone" id="phone" maxlength="20" onkeyup="numeric(this)">
-					</div>
-				</fieldset>
+    <footer>
+      <ul class="social-media">
+        <li>
+          <a href="https://www.twitter.com"
+            ><ion-icon name="logo-twitter"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com"
+            ><ion-icon name="logo-facebook"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com"
+            ><ion-icon name="logo-instagram"></ion-icon
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com"
+            ><ion-icon name="logo-linkedin"></ion-icon
+          ></a>
+        </li>
+      </ul>
 
-				<fieldset id="preferences">
-					<legend>Preferences:</legend>
+      <ul class="footer-page-nav">
+        <li><a href="/playdate">Playdates</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/adoption">Adoption</a></li>
+        <li><a href="/about">About Us</a></li>
+      </ul>
 
-					<fieldset class="pet-ownership-wrapper">
-						<legend>Pet ownership:</legend>
+      <div class="description">
+        <p><b>© 2022, Members of the team Group 16 (Tutor Group 02)</b></p>
+      </div>
+    </footer>
 
-						<div class="pet-ownership">
-							<input type="checkbox" name="pet_owner" id="pet_owner" value="true">
-							<label for="pet_owner">Do you have a pet?</label><br>
-						</div>
-					</fieldset>
+    <!-- Thumbnails Preview -->
+    <script src="js/register-script.js" type="text/javascript"></script>
+    <!-- Form Logic -->
+    <script src="js/validate-form.js" type="text/javascript"></script>
+    <script src="js/validate-patterns.js" type="text/javascript"></script>
+    <!-- <script src="js/enable-pet-options.js" type="text/javascript"></script> -->
+    <!-- <script src="js/enable-service-options.js" type="text/javascript"></script> -->
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Swiper -->
+    <script src="js/swiper-bundle.js"></script>
+    <!-- Custom JS -->
+    <script src="js/mobile-menu.js" type="text/javascript"></script>
 
-					<fieldset class="unlockable-pet-options">
-						<legend>Select Pet Options:</legend>
-
-						<div>
-							<label class="required" for="pet_type">What type of pet do you have?</label><br>
-							<select class="pet-options" name="pet_type" id="pet_type" required disabled> <!-- Make required when enabled -->
-								<option value="">-- Select an option --</option>
-
-								<option value="dog">Dog</option>
-								<option value="cat">Cat</option>
-								<option value="pig">Pig</option>
-								<option value="bird">Bird</option>
-								<option value="monkey">Monkey</option>
-								<option value="donkey">Donkey</option>
-								<option value="rodent">Rodent</option>
-							</select>
-						</div>
-
-						<div>
-							<label class="required" for="pet_name">Pet Name</label><br>
-							<input class="pet-options input-box" type="text" name="pet_name" id="pet_name" maxlength="20" onkeyup="letters(this)" required disabled>
-						</div>
-
-						<div>
-							<label class="required" for="pet_image">Pet Picture (png or jpeg)</label><br>
-							<input class="pet-options" type="file" name="pet_image" id="pet_image" accept=".png, .jpeg, jpg" onchange="previewPetImage(this)" required disabled>
-						</div>
-
-						<div class="preview">
-							<img src="" tabindex="-1" id="pet-image-thumbnail2" />
-						</div>
-
-						<div>
-							<input class="pet-options checkable-pet-options" type="checkbox" name="lf_playdate" id="lf_playdate" value="true" disabled>
-							<label for="lf_playdate">Do you want to find a playdate for your pet?</label><br>
-						</div>
-
-						<div>
-							<input class="pet-options checkable-pet-options" type="checkbox" name="lf_adoption" id="lf_adoption" value="true" disabled>
-							<label for="lf_adoption">Do you want to find a new parent for your pet?</label><br>
-						</div>
-					</fieldset>
-
-					<fieldset class="dating-wrapper">
-						<legend>Dating:</legend>
-
-						<div class="dating">
-							<input type="checkbox" name="lf_date" id="lf_date" value="true">
-							<label for="lf_date">Are you looking for a human date?</label><br>
-						</div>
-					</fieldset>
-					
-					<fieldset class="services-wrapper">
-						<legend>Services:</legend>
-						
-						<div class="services">
-							<input type="checkbox" name="services" id="services" value="true">
-							<label for="services">Are you offering pet services?</label><br>
-						</div>
-					</fieldset>
-
-
-					<fieldset class="unlockable-service-options">
-						<legend>Select at least one service option:</legend>
-
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="groomer" value="groomer" disabled>
-							<label for="groomer">Pet Grooming</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="walker" value="walker" disabled>
-							<label for="walker">Pet Walker</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="trainer" value="trainer" disabled>
-							<label for="trainer">Pet Trainer</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="sitter" value="sitter" disabled>
-							<label for="sitter">Pet Sitter</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="daycare" value="daycare" disabled>
-							<label for="daycare">Pet Daycare</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="foods" value="foods" disabled>
-							<label for="foods">Pet Foods</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="products" value="products" disabled>
-							<label for="products">Pet Products</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="mobileClinic" value="mobileClinic" disabled>
-							<label for="mobile-clinic">Pet Mobile Clinic</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="veterinarian" value="veterinarian" disabled>
-							<label for="veterinarian">Veterinarian</label><br>
-						</div>
-						<div>
-							<input class="checkable-service-options" type="checkbox" name="service_options" id="radioShow" value="radioShow" disabled>
-							<label for="radioShow">Pet Radio Show</label><br>
-						</div>
-					</fieldset>
-
-					<input type="submit" id="submit_form" value="Update">
-				</fieldset>
-			</form>
-		</div>
-
-		<div class="marginContainer"></div>
-		<footer>
-			<ul class="social-media">
-			  <li><a href="https://www.twitter.com"><ion-icon name="logo-twitter"></ion-icon></a></li>
-			  <li><a href="https://www.facebook.com"><ion-icon name="logo-facebook"></ion-icon></a></li>
-			  <li><a href="https://www.instagram.com"><ion-icon name="logo-instagram"></ion-icon></a></li>
-			  <li><a href="https://www.linkedin.com"><ion-icon name="logo-linkedin"></ion-icon></a></li>
-			</ul>
-	  
-			<ul class="footer-page-nav">
-			  <li><a href="/playdate">Playdates</a></li>
-			  <li><a href="/services">Services</a></li>
-			  <li><a href="/adoption">Adoption</a></li>
-			  <li><a href="/about">About Us</a></li>
-			</ul>
-	  
-			<div class="description">
-			  <p><b>© 2022, Members of the team Group 16 (Tutor Group 02)</b></p>
-			</div>
-		  </footer>
-
-
-		<!-- Thumbnails Preview -->
-		<script src="js/register-script.js" type="text/javascript"></script>
-		<!-- Form Logic -->
-		<script src="js/validate-form.js" type="text/javascript"></script>
-		<script src="js/validate-patterns.js" type="text/javascript"></script>
-		<script src="js/enable-pet-options.js" type="text/javascript"></script>
-		<script src="js/enable-service-options.js" type="text/javascript"></script>
-		<!-- jQuery -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-		<!-- Swiper -->
-		<script src="js/swiper-bundle.js"></script>
-		<!-- Custom JS -->
-		<script src="js/mobile-menu.js" type="text/javascript"></script>
-
-		<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<script type="text/javascript">
 			var geocoder = new google.maps.Geocoder();
 			var address = "new york";
@@ -297,5 +246,29 @@
 				} 
 			}); 
 		</script> -->
-	</body>
+
+    <script>
+      const editModal = document.getElementById("edit-profile-modal");
+
+      const openModal = () => {
+        editModal.style.display = "flex";
+      };
+
+      const closeModal = () => {
+        editModal.style.display = "none";
+      };
+
+      window.addEventListener("click", function (event) {
+        if (event.target == editModal) {
+          editModal.style.display = "none";
+        }
+      });
+      document
+        .getElementById("edit-profile")
+        .addEventListener("click", openModal);
+      document
+        .getElementById("close-edit")
+        .addEventListener("click", closeModal);
+    </script>
+  </body>
 </html>
