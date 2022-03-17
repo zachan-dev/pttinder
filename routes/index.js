@@ -325,11 +325,35 @@ router.get("/searchadoptions", function (req, res, next) {
 /* GET services page. */
 router.get("/services", function (req, res, next) {
   user_id = req.session.user_id;
-  res.render("services", {
-    title: r.APP_NAME,
-    page: "Services",
-    user_id: user_id,
+
+  let sqlquery = `SELECT email, user_name, description, user_image_url, street, city,
+  state, country, code, phone, service
+  FROM
+    Services JOIN Users
+    ON Users.id = Services.user_id
+      JOIN Locations
+      ON Users.id = Locations.user_id
+  ORDER BY service ASC;`;
+
+  db.query(sqlquery, (err, result) => {
+    if (err) {
+      res.render("services", {
+        title: r.APP_NAME,
+        page: "Services",
+        user_id: user_id,
+        services: []
+      });
+    } else {
+      res.render("services", {
+        title: r.APP_NAME,
+        page: "Services",
+        user_id: user_id,
+        services: result,
+      });
+    }
   });
+
+  
 });
 
 /* Search services page */
@@ -366,7 +390,12 @@ router.get("/searchservices", function (req, res, next) {
           services: result,
         });
       } else {
-        res.redirect("/");
+        res.render("services", {
+          title: r.APP_NAME,
+          page: "Services",
+          user_id: user_id,
+          services: []
+        });
       }
     }
   });

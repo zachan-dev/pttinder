@@ -193,89 +193,110 @@
       <section>
         <h1>Services</h1>
 
-        <div class="services-section">
-          <div class="all-services">
-            <div class="services-card">
-              <ion-icon name="camera-outline"></ion-icon>
-              <h5>Pet Photographer</h5>
-              <p>
-                You and your furry friend can find the purrfect playdate! Check
-                out our playdate app for free!
-              </p>
-              <a class="more-button button" href="">Learn More</a>
+        <div class="all-services">
+          <% services.forEach(function(service){ %>
+            <img src='../media/<%= service.user_image_url %>' alt="A service provider picture" />
+                <h5><%= service.service %></h5>
+                <p><%= service.description %></p>
+                <ul>
+                    <li>Provider: <%= service.user_name %></li>
+                    <li>Email: <%= service.email %></li>
+                    <li>Phone: <%= service.phone %></li>
+                    <li>Address: | <%= service.street %> | <%= service.city %> |
+                        <%= service.state %> | <%= service.country %> | <%= service.code %> |
+                    </li>
+                </ul>
             </div>
+          <% }) %>
+        </div>
 
-            <div class="services-card">
-              <ion-icon name="home-outline"></ion-icon>
-              <h5>Doggy Daycare</h5>
-              <p>
-                You and your furry friend can find the purrfect playdate! Check
-                out our playdate app for free!
-              </p>
-              <a class="more-button button" href="">Learn More</a>
-            </div>
-
-            <div class="services-card">
-              <ion-icon name="american-football-outline"></ion-icon>
-              <h5>Pet Play</h5>
-              <p>
-                You and your furry friend can find the purrfect playdate! Check
-                out our playdate app for free!
-              </p>
-              <a class="more-button button" href="">Learn More</a>
-            </div>
-
-            <div class="services-card">
-              <ion-icon name="restaurant-outline"></ion-icon>
-              <h5>Pet Restaurant</h5>
-              <p>
-                You and your furry friend can find the purrfect playdate! Check
-                out our playdate app for free!
-              </p>
-              <a class="more-button button" href="">Learn More</a>
-            </div>
-
-            <div class="services-card">
-              <ion-icon name="bandage-outline"></ion-icon>
-              <h5>Mobile Clinic</h5>
-              <p>
-                You and your furry friend can find the purrfect playdate! Check
-                out our playdate app for free!
-              </p>
-              <a class="more-button button" href="">Learn More</a>
-            </div>
-
-            <div class="services-card">
-              <ion-icon name="shirt-outline"></ion-icon>
-              <h5>Dog Clothes</h5>
-              <p>
-                You and your furry friend can find the purrfect playdate! Check
-                out our playdate app for free!
-              </p>
-              <a class="more-button button" href="">Learn More</a>
-            </div>
-
-            <div class="services-card">
-              <ion-icon name="pizza-outline"></ion-icon>
-              <h5>Treats and Food</h5>
-              <p>
-                You and your furry friend can find the purrfect playdate! Check
-                out our playdate app for free!
-              </p>
-              <a class="more-button button" href="">Learn More</a>
-            </div>
-
-            <div class="services-card">
-              <ion-icon name="finger-print-outline"></ion-icon>
-              <h5>Tag Engraver</h5>
-              <p>
-                You and your furry friend can find the purrfect playdate! Check
-                out our playdate app for free!
-              </p>
-              <a class="more-button button" href="">Learn More</a>
+        <% if(services === undefined || services.length == 0){ %>
+          <div class="services-section">
+            <div class="all-services">
+              <div class="services-card">
+                <ion-icon name="camera-outline"></ion-icon>
+                <h5>Pet Photographer</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="home-outline"></ion-icon>
+                <h5>Doggy Daycare</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="american-football-outline"></ion-icon>
+                <h5>Pet Play</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="restaurant-outline"></ion-icon>
+                <h5>Pet Restaurant</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="bandage-outline"></ion-icon>
+                <h5>Mobile Clinic</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="shirt-outline"></ion-icon>
+                <h5>Dog Clothes</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="pizza-outline"></ion-icon>
+                <h5>Treats and Food</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="finger-print-outline"></ion-icon>
+                <h5>Tag Engraver</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
             </div>
           </div>
-        </div>
+       <% } %>
+
+       
       </section>
     </section>
 
