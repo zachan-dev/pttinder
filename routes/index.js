@@ -341,7 +341,7 @@ router.get("/services", function (req, res, next) {
         title: r.APP_NAME,
         page: "Services",
         user_id: user_id,
-        services: []
+        services: dummy_data.service_data,
       });
     } else {
       res.render("services", {

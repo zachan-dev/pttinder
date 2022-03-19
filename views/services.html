@@ -195,19 +195,22 @@
 
         <div class="all-services">
           <% services.forEach(function(service){ %>
-            <img src='../media/<%= service.user_image_url %>' alt="A service provider picture" />
-                <h5><%= service.service %></h5>
-                <p><%= service.description %></p>
-                <ul>
-                    <li>Provider: <%= service.user_name %></li>
-                    <li>Email: <%= service.email %></li>
-                    <li>Phone: <%= service.phone %></li>
-                    <li>Address: | <%= service.street %> | <%= service.city %> |
-                        <%= service.state %> | <%= service.country %> | <%= service.code %> |
-                    </li>
-                </ul>
+            <div class="services-card">
+              <img src='../media/<%= service.user_image_url %>' alt="A service provider picture" />
+              <h5><%= service.service %></h5>
+              <p><%= service.description %></p>
+              <ul>
+                  <li>Provider: <%= service.user_name %></li>
+                  <li>Email: <%= service.email %></li>
+                  <li>Phone: <%= service.phone %></li>
+                  <li>Address: | <%= service.street %> | <%= service.city %> |
+                      <%= service.state %> | <%= service.country %> | <%= service.code %> |
+                  </li>
+              </ul>
             </div>
-          <% }) %>
+            <% }) %>
+            </div>
+          
         </div>
 
         <% if(services === undefined || services.length == 0){ %>
