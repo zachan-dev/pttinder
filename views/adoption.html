@@ -194,34 +194,35 @@
                     <a href="#">Other Breeds</a>
                 </details>
             </section>
+            <section>
+              <!-- All Pets -->
+              <!-- <section class="pets-information"> -->
+              <h1>Pets</h1>
+      
+              <div class="all-pets">
+                <% pets.forEach(function(pet){ %>
+                <div class="pets-card">
+                  <img
+                    src="../media/<%= pet.pet_image_url %>"
+                    alt="A pet for adoption"
+                  />
+                  <h5><%= pet.pet_name %> (<%= pet.pet_type%>)</h5>
+                  <p><% pet.description %></p>
+                  <ul>
+                    <li>Owner: <%= pet.user_name %></li>
+                    <li>Email: <%= pet.email %></li>
+                    <li>Phone: <%= pet.phone %></li>
+                    <li>
+                      Address: | <%= pet.street %> | <%= pet.city %> | <%= pet.state
+                      %> | <%= pet.country %> | <%= pet.code %> |
+                    </li>
+                  </ul>
+                </div>
+                <% }) %>
+              </div>
+            </section>
           </section>
-      <!-- All Pets -->
-      <section>
-        <!-- <section class="pets-information"> -->
-        <h1>Pets</h1>
 
-        <div class="all-pets">
-          <% pets.forEach(function(pet){ %>
-          <div class="pets-card">
-            <img
-              src="../media/<%= pet.pet_image_url %>"
-              alt="A pet for adoption"
-            />
-            <h5><%= pet.pet_name %> (<%= pet.pet_type%>)</h5>
-            <p><% pet.description %></p>
-            <ul>
-              <li>Owner: <%= pet.user_name %></li>
-              <li>Email: <%= pet.email %></li>
-              <li>Phone: <%= pet.phone %></li>
-              <li>
-                Address: | <%= pet.street %> | <%= pet.city %> | <%= pet.state
-                %> | <%= pet.country %> | <%= pet.code %> |
-              </li>
-            </ul>
-          </div>
-          <% }) %>
-        </div>
-      </section>
     </section>
 
     <footer>
