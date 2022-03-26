@@ -265,6 +265,7 @@ router.get("/playdate", function (req, res, next) {
 router.get("/adoption", function (req, res, next) {
   let user_id = req.session.user_id;
 
+
   // Create the SQL query to select all pet adoption records in the database.
   let sqlquery = `SELECT email, user_name, description, street, city, state, country,
   code, phone, pet_name, pet_type, pet_image_url
@@ -293,6 +294,7 @@ router.get("/adoption", function (req, res, next) {
         page: "Adoption",
         user_id: user_id,
         pets: result,
+        //pets: pets_data,
       });
     }
   });
@@ -375,6 +377,8 @@ router.get("/services", function (req, res, next) {
       });
     }
   });
+
+  
 });
 
 /* Search services page */
@@ -409,11 +413,15 @@ router.get("/searchservices", function (req, res, next) {
         res.render("services", {
           title: r.APP_NAME,
           page: "Services",
-          user_id: user_id,
           services: result,
         });
       } else {
-        //res.redirect("/");
+        res.render("services", {
+          title: r.APP_NAME,
+          page: "Services",
+          user_id: user_id,
+          services: []
+        });
       }
     }
   });

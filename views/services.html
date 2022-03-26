@@ -118,6 +118,47 @@
                 <div class="input-box">
                   <label for="country">Or by country</label>
                   <input class="parameters" type="text" id="country" name="country" maxlength="25" onkeyup="lettersWithSpace(this)" placeholder="optional">
+<!--             <form action="">
+              <div class="search-options">
+                <div class="category">
+                  <label for="service">Select a pet service</label>
+                  <select id="service" name="service-options">
+                    <!-- Make required when enabled -->
+                    <option hidden disabled selected value>
+                      -- select an option --
+                    </option>
+                    <option value="pet-groomer">Pet Groomer</option>
+                    <option value="pet-walker">Pet Walker</option>
+                    <option value="pet-trainer">Pet Trainer</option>
+                    <option value="pet-sitter">Pet Sitter</option>
+                    <option value="pet-daycare">Pet Daycare</option>
+                    <option value="pet-foods">Pet Foods</option>
+                    <option value="pet-products">Pet Products</option>
+                    <option value="pet-mobile-clinic">Pet Mobile Clinic</option>
+                    <option value="pet-veterinarian">Pet Veterinarian</option>
+                    <option value="pet-radio-show">Pet Radio Show</option>
+                  </select>
+                </div>
+
+                <div class="input-box">
+                  <label for="service-provider">Name of provider</label>
+                  <input
+                    type="text"
+                    id="service-provider"
+                    name="service-provider"
+                    placeholder="optional"
+                  />
+                </div>
+
+                <div class="search-radius">
+                  <label for="search-radius">Search Radius</label>
+                  <select class="" id="search-radius" name="service-options">
+                    <!-- Make required when enabled -->
+                    <option value="5km">5 km</option>
+                    <option value="10km">10 km</option>
+                    <option value="50km">50 km</option>
+                    <option value="100km">100 km</option>
+                  </select> -->
                 </div>
               </div>
 
@@ -158,6 +199,19 @@
               <img src="media/adoption/shiba-inu-2.jpg" alt="A shiba inu" />
               <h5>Creative</h5>
             </div>
+<!--             </div>
+            <div class="service-picture">
+              <img src="media/adoption/shiba-inu-1.jpg" alt="A shiba inu" />
+              <h5>Hair Removal</h5>
+            </div>
+            <div class="service-picture">
+              <img src="media/adoption/corgi1.jpg" alt="A shiba inu" />
+              <h5>Bathing</h5>
+            </div>
+            <div class="service-picture">
+              <img src="media/adoption/shiba-inu-2.jpg" alt="A shiba inu" />
+              <h5>Creative</h5>
+            </div> -->
           </div>
         </div>
 
@@ -297,6 +351,115 @@
             </div>
           <% }) %>
         </div>
+
+<!--       <section>
+        <h1>Services</h1>
+
+        <div class="all-services">
+          <% services.forEach(function(service){ %>
+            <div class="services-card">
+              <img src='../media/<%= service.user_image_url %>' alt="A service provider picture" />
+              <h5><%= service.service %></h5>
+              <p><%= service.description %></p>
+              <ul>
+                  <li>Provider: <%= service.user_name %></li>
+                  <li>Email: <%= service.email %></li>
+                  <li>Phone: <%= service.phone %></li>
+                  <li>Address: | <%= service.street %> | <%= service.city %> |
+                      <%= service.state %> | <%= service.country %> | <%= service.code %> |
+                  </li>
+              </ul>
+            </div>
+            <% }) %>
+            </div>
+          
+        </div>
+
+        <% if(services === undefined || services.length == 0){ %>
+          <div class="services-section">
+            <div class="all-services">
+              <div class="services-card">
+                <ion-icon name="camera-outline"></ion-icon>
+                <h5>Pet Photographer</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="home-outline"></ion-icon>
+                <h5>Doggy Daycare</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="american-football-outline"></ion-icon>
+                <h5>Pet Play</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="restaurant-outline"></ion-icon>
+                <h5>Pet Restaurant</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="bandage-outline"></ion-icon>
+                <h5>Mobile Clinic</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="shirt-outline"></ion-icon>
+                <h5>Dog Clothes</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="pizza-outline"></ion-icon>
+                <h5>Treats and Food</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+  
+              <div class="services-card">
+                <ion-icon name="finger-print-outline"></ion-icon>
+                <h5>Tag Engraver</h5>
+                <p>
+                  You and your furry friend can find the purrfect playdate! Check
+                  out our playdate app for free!
+                </p>
+                <a class="more-button button" href="">Learn More</a>
+              </div>
+            </div>
+          </div>
+       <% } %> -->
       </section>
     </section>
 

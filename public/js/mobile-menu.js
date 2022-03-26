@@ -17,8 +17,8 @@ function handleMobileMenuClick()
   else
   {
     navMenu.style.display = "flex";
-    // let height = window.innerHeight - 2 - nav.getBoundingClientRect().height;
-    // navMenu.style.height = height + "px";
+    let height = window.innerHeight - 2 - nav.getBoundingClientRect().height;
+    navMenu.style.height = height + "px";
     navMenu.setAttribute('data-open', 'true');
     navIcon.classList.toggle('fa-times');
     navIcon.classList.toggle('fa-bars');

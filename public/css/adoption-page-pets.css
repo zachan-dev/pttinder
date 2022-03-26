@@ -1,14 +1,14 @@
 .page-content{
     margin: 2%;
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    grid-template-rows: auto;
-    grid-gap: 50px;
+    display: flex;
+    /* grid-template-columns: 1fr;
+    grid-gap: 25px;
+    grid-template-rows: auto; */
 }
 
 .all-pets{
     display: flex;
-    flex-direction: row;
+    /* grid-gap: 30px; */
     flex-wrap: wrap; 
     font-size: 1.2rem;
 }
@@ -17,8 +17,8 @@
     text-align: center;
     border-radius: 16px;
     box-shadow: 3px 3px 8px 4px rgba(0,0,0,0.15);
-    max-width: 200px;
-    max-height: 400px;
+    max-width: 250px;
+    max-height: 450px;
     padding: 5%;
     margin-right: 2%;
     margin-top: 1%;

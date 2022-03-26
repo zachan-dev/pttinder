@@ -71,6 +71,9 @@
 
 .services-card ion-icon {
     font-size: 64px;
+    max-height: 450px;
+    padding: 5%;
+    line-height: 1.5rem;
 }
 
 .services-card img {
@@ -97,4 +100,16 @@
     list-style-type:none;
     padding:0px;
     margin:0px;
+}
+
+.services-section{
+    display: flex;
+    align-items: center;
+    /* width: 80%; */
+    justify-content: center;
+    /* background-color: aqua; */
+}
+
+.services-card ion-icon {
+    font-size: 64px;
 }
