@@ -1,8 +1,11 @@
 var Fakerator = require("fakerator");
 var fakerator = Fakerator("de-DE");
 
-let images_url = ['adoption/shiba-inu-1.jpg', 'adoption/shiba-inu-2.jpg', 'adoption/golden-retriever.jpg', 'adoption/corgi1.jpg', 'adoption/corgi2.jpg', 'adoption/border-collie-1.jpg'];
-let pets_type = ['Shiba Inu', 'Shiba Inu', 'Golden Retriever', 'Corgi', 'Corgi', 'Border Collie']
+let images_url = ['adoption/shiba-inu-1.jpg', 'adoption/shiba-inu-2.jpg',
+                  'adoption/golden-retriever.jpg', 'adoption/corgi1.jpg', 
+                  'adoption/corgi2.jpg', 'adoption/border-collie-1.jpg'];
+let pets_type = ['Shiba Inu', 'Shiba Inu', 'Golden Retriever', 'Corgi',
+                 'Corgi', 'Border Collie']
 
 let pets_data = [];
 

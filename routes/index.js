@@ -195,11 +195,12 @@ router.post("/signin", function (req, res, next) {
           if (data) {
             console.log("Debug: result %j", result[0]);
 
-            req.session.user_id = result[0].id;
+            let user_id = req.session.user_id;
+            user_id = result[0].id;
+
             console.log("Debug: req.session.user_id %j", req.session.user_id);
             console.log("Debug: user session: %j", req.session);
-
-            let user_id = req.session.user_id;
+            
             res.render("index", {
               title: r.APP_NAME,
               page: "Home",
