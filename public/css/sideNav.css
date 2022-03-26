@@ -1,5 +1,5 @@
 .sidNav {
-  width: 20%;
+  width: 100%;
   position: relative;
   z-index: 1;
   top: 20px;
@@ -28,12 +28,6 @@
   font-size: 26px;
   color: var(--primary-blue);
 }
-
-/* .page-content{
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-} */
 
 details{
   margin-top: 2rem;

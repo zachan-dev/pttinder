@@ -53,6 +53,8 @@
 .all-services{
     margin-top: 2%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     grid-gap: 30px;
     flex-wrap: wrap;
 }
@@ -62,6 +64,13 @@
     border-radius: 16px;
     box-shadow: 3px 3px 8px 4px rgba(0,0,0,0.15);
     max-width: 200px;
+    max-height: 400px;
+    padding: 5%;
+    line-height: 1.5rem;
+}
+
+.services-card ion-icon {
+    font-size: 64px;
     max-height: 450px;
     padding: 5%;
     line-height: 1.5rem;
